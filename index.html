@@ -242,7 +242,7 @@
         transform-origin: center;   
     }
     body{
-        background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #90C5CD);
+        background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #088092);
         background-size: 200% 200%;
         animation: bgGradient 18s ease infinite;
         position: relative;
@@ -255,7 +255,7 @@
         z-index: -1;               
         pointer-events: none;
         opacity: 0.55;
-        filter: blur(18px);
+        filter: blur(10px);
     transform: translateZ(0); 
     }
 
@@ -402,12 +402,12 @@
           <section id="structure" hidden>
             <h3>Структура головної сторінки (семантична верстка)</h3>
             <pre><code>&lt;header&gt;...&lt;/header&gt;
-&lt;nav&gt;...&lt;/nav&gt;
-&lt;main&gt;
-  &lt;section&gt;...&lt;/section&gt;
-  &lt;section&gt;...&lt;/section&gt;
-&lt;/main&gt;
-&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+              &lt;nav&gt;...&lt;/nav&gt;
+              &lt;main&gt;
+              &lt;section&gt;...&lt;/section&gt;
+              &lt;section&gt;...&lt;/section&gt;
+              &lt;/main&gt;
+              &lt;footer&gt;...&lt;/footer&gt;</code></pre>
 
             <p>У цій лабораторній також окремо наводяться фрагменти HTML-коду для таблиці, зображення, списків і форми (та скріншоти результату).</p>
           </section>
@@ -415,14 +415,16 @@
           <section id="table" hidden>
             <h3>HTML-код таблиці</h3>
             <pre><code>&lt;table&gt;
-  &lt;caption&gt;Приклад таблиці&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;&lt;th&gt;Колонка 1&lt;/th&gt;&lt;th&gt;Колонка 2&lt;/th&gt;&lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;&lt;td&gt;Дані 1&lt;/td&gt;&lt;td&gt;Дані 2&lt;/td&gt;&lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
+              &lt;caption&gt;Приклад таблиці&lt;/caption&gt;
+                &lt;thead&gt;
+               &lt;tr&gt;&lt;th&gt;Колонка 1&lt;/th&gt;&lt;th&gt;Колонка 2&lt;/th&gt;&lt;/tr&gt;
+                &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;Дані 1&lt;/td&gt;&lt;td&gt;Дані 2&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+              &lt;/table&gt;
+            </code>
+            </pre>
 
             <h3>Теорія (коротко)</h3>
             <ul>
