@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZPI-51_appWEB-SaninMariia-FIOT-2025</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111;
+      --line:#333;
+      --muted:#666;
+      --tab:#f5f5f5;
+      --active:#fff3a6;
+      --radius:18px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: "Times New Roman", serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+
+    /* Page */
+    .page{
+      max-width: 1100px;
+      margin: 18px auto;
+      padding: 14px 16px 20px;
+      border: 2px solid transparent; /* щоб на скріншоті було чисто */
+    }
+
+    /* Header */
+    header{
+      display:grid;
+      grid-template-columns: 1fr 170px;
+      gap: 12px;
+      align-items:start;
+      margin-bottom: 12px;
+    }
+    .title{
+      text-align:center;
+      line-height:1.2;
+    }
+    .title h1{
+      margin:0;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .title h2{
+      margin:6px 0 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .title p{
+      margin:8px 0 0;
+      font-size: 14px;
+    }
+
+    .photo{
+      border: 2px solid var(--line);
+      height: 120px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      font-size:14px;
+    }
+    .photo small{ color: var(--muted); }
+
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      margin: 8px 0 14px;
+      padding: 0;
+      list-style:none;
+    }
+    .tabs button{
+      border:2px solid var(--line);
+      background: var(--tab);
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-size: 14px;
+      min-width: 110px;
+      text-align:center;
+    }
+    .tabs button.is-active{
+      background: var(--active);
+      font-weight: 700;
+    }
+
+    /* Layout under tabs */
+    .layout{
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+
+    /* Left menu (oval buttons) */
+    aside{
+      padding-top: 4px;
+    }
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .menu button{
+      border:2px solid var(--line);
+      background:#fff;
+      border-radius: 999px;
+      padding: 12px 14px;
+      cursor:pointer;
+      font-size: 14px;
+      text-align:left;
+    }
+    .menu button.is-active{
+      background:#fff;
+      outline: 3px solid rgba(0,0,0,0.08);
+      font-weight:700;
+    }
+    .menu .indent{
+      margin-left: 26px;
+      width: calc(100% - 26px);
+      text-align:center;
+      padding: 10px 12px;
+    }
+    .menu .wide{
+      padding: 14px 14px;
+    }
+
+    /* Main content frame */
+    main{
+      border: 2px solid var(--line);
+      min-height: 520px;
+      padding: 18px;
+      position:relative;
+    }
+    .content-title{
+      text-align:center;
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .hint{
+      text-align:center;
+      color: var(--muted);
+      margin: 0 0 16px;
+      font-size: 14px;
+    }
+
+    /* Sections */
+    section[hidden]{ display:none !important; }
+    section h3{
+      margin: 12px 0 8px;
+      font-size: 16px;
+    }
+    section p, section li{
+      font-size: 14px;
+      line-height:1.35;
+    }
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+    pre{
+      border:1px solid #ccc;
+      padding: 10px;
+      overflow:auto;
+      background:#fafafa;
+    }
+
+    footer{
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align:center;
+    }
+
+    @media (max-width: 900px){
+      header{ grid-template-columns: 1fr; }
+      .photo{ max-width: 220px; }
+      .layout{ grid-template-columns: 1fr; }
+      .tabs{ justify-content:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="title">
+        <h1>ZPI-51_appWEB-SaninMariia-FIOT-2025</h1>
+        <h2>з дисципліни «Проєктування WEB-застосувань»</h2>
+        <p><strong>Виконавець:</strong> студент(ка) групи ________ &nbsp;&nbsp; <strong>ПІБ:</strong> _______________________</p>
+      </div>
+
+      <div class="photo" aria-label="Фото студента">
+        <div><strong>Орієнтовний макет</strong></div>
+        <div style="border:1px dashed #777; width:120px; height:70px; display:flex; align-items:center; justify-content:center;">
+          <span>ФОТО<br>студента</span>
+        </div>
+        <small>(вставиш img)</small>
+      </div>
+    </header>
+
+    <!-- Tabs for labs -->
+    <nav aria-label="Вкладки лабораторних робіт">
+      <ul class="tabs" id="labTabs">
+        <li><button class="is-active" data-lab="lab1">Лабораторна робота №1</button></li>
+        <li><button data-lab="lab2">Лабораторна робота №2</button></li>
+        <li><button data-lab="lab3">Лабораторна робота №3</button></li>
+        <li><button data-lab="lab4">Лабораторна робота №4</button></li>
+        <li><button data-lab="lab5">Лабораторна робота №5</button></li>
+        <li><button data-lab="lab6">Лабораторна робота №6</button></li>
+        <li><button data-lab="lab7">Лабораторна робота №7</button></li>
+        <li><button data-lab="lab8">Лабораторна робота №8</button></li>
+        <li><button data-lab="lab9">Лабораторна робота №9</button></li>
+      </ul>
+    </nav>
+
+    <div class="layout">
+      <!-- Left menu -->
+      <aside>
+        <div class="menu" id="leftMenu">
+          <button class="is-active wide" data-section="meta">Тема Мета Місце<br>розташування сайту, звіту</button>
+          <button class="wide" data-section="logic">Опис предметного середовища.<br>Опис бізнес-логіки</button>
+          <button class="wide" data-section="structure">Структура документа</button>
+
+          <button class="indent" data-section="table">HTML-код ТАБЛИЦІ</button>
+          <button class="indent" data-section="image">HTML-код ЗОБРАЖЕННЯ</button>
+          <button class="indent" data-section="list">HTML-код СПИСКІВ</button>
+          <button class="indent" data-section="form">HTML-код ФОРМИ</button>
+          <button class="indent" data-section="html">HTML-код</button>
+
+          <button class="wide" data-section="homePage">Головна сторінка WEB-застосунку</button>
+          <button class="wide" data-section="homeCode">Код головної сторінки WEB-застосунку</button>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main aria-label="Місце виведення інформації">
+        <h3 class="content-title" id="contentTitle">Лабораторна робота №1</h3>
+        <p class="hint" id="contentHint">Місце виведення інформації</p>
+
+        <!-- ========== LAB 1 CONTENT ========== -->
+        <div class="lab" data-lab="lab1">
+
+          <section id="meta" aria-labelledby="h-meta">
+            <h3 id="h-meta">Тема, мета, посилання</h3>
+            <p><strong>Тема:</strong> Теги та атрибути HTML-документа. Структурна розмітка. Git/GitHub. Робота з репозиторіями. Опис логіки власного WEB-застосунку.</p>
+            <p><strong>Мета:</strong> набути навички роботи з GitHub, репозиторіями, HTML-документом (таблиці, зображення, посилання, списки, форми) та створити шаблон звітного HTML-документа для всіх лабораторних робіт.</p>
+
+            <h3>Посилання (заповниш після створення репозиторіїв)</h3>
+            <ul>
+              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank" rel="noreferrer">посилання</a></li>
+              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="#" target="_blank" rel="noreferrer">посилання</a></li>
+              <li>Репозиторій звіту (appRECORD): <a href="#" target="_blank" rel="noreferrer">посилання</a></li>
+              <li>Жива сторінка звіту: <a href="#" target="_blank" rel="noreferrer">посилання</a></li>
+            </ul>
+          </section>
+
+          <section id="logic" hidden>
+            <h3>Тема власного WEB-застосунку</h3>
+            <p><em>Приклад (замінити на свою предметну галузь):</em> WEB-застосунок для обліку тренувань, харчування та прогресу користувача.</p>
+
+            <h3>Мета створення WEB-застосунку</h3>
+            <p>Автоматизувати ведення щоденника тренувань і харчування, забезпечити наочну статистику та контроль цілей.</p>
+
+            <h3>Скорочений опис предметного середовища (бізнес-логіка)</h3>
+            <p>Користувач додає записи про тренування, харчування та вагу. Система зберігає дані, показує історію, підраховує підсумки та формує звіти за період.</p>
+
+            <h3>Функціональні вимоги</h3>
+            <ul>
+              <li>Додавання/редагування/видалення записів (тренування, харчування, вага).</li>
+              <li>Перегляд списку записів за датами.</li>
+              <li>Фільтрація/пошук.</li>
+              <li>Виведення підсумків за день/тиждень.</li>
+            </ul>
+
+            <h3>Нефункціональні вимоги</h3>
+            <ul>
+              <li>Зручний інтерфейс, адаптивність під різні екрани.</li>
+              <li>Швидке завантаження сторінок.</li>
+              <li>Коректна семантична розмітка HTML.</li>
+              <li>Кросбраузерність (Chrome/Firefox/Edge).</li>
+            </ul>
+          </section>
+
+          <section id="structure" hidden>
+            <h3>Структура головної сторінки (семантична верстка)</h3>
+            <pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;...&lt;/section&gt;
+  &lt;section&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+
+            <p>У цій лабораторній також окремо наводяться фрагменти HTML-коду для таблиці, зображення, списків і форми (та скріншоти результату).</p>
+          </section>
+
+          <section id="table" hidden>
+            <h3>HTML-код таблиці</h3>
+            <pre><code>&lt;table&gt;
+  &lt;caption&gt;Приклад таблиці&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Колонка 1&lt;/th&gt;&lt;th&gt;Колонка 2&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Дані 1&lt;/td&gt;&lt;td&gt;Дані 2&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+            <h3>Теорія (коротко)</h3>
+            <ul>
+              <li><code>&lt;table&gt;</code> — контейнер таблиці.</li>
+              <li><code>&lt;tr&gt;</code> — рядок; <code>&lt;th&gt;</code> — заголовкова комірка; <code>&lt;td&gt;</code> — звичайна комірка.</li>
+              <li><code>&lt;caption&gt;</code> — підпис таблиці; <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code> — логічні частини.</li>
+            </ul>
+            <p><em>Скріншот таблиці вставиш тут окремо як &lt;img&gt; після того, як зробиш скрін.</em></p>
+          </section>
+
+          <section id="image" hidden>
+            <h3>HTML-код зображення</h3>
+            <pre><code>&lt;img src="images/example.png" alt="Опис зображення" width="400"&gt;</code></pre>
+
+            <h3>Теорія (атрибути)</h3>
+            <ul>
+              <li><code>src</code> — шлях до зображення.</li>
+              <li><code>alt</code> — альтернативний текст (важливо для доступності та якщо файл не завантажився).</li>
+              <li><code>width</code>/<code>height</code> — розміри (краще контролювати через CSS, але в лабі можна показати атрибути).</li>
+            </ul>
+          </section>
+
+          <section id="list" hidden>
+            <h3>HTML-код списків</h3>
+            <pre><code>&lt;ul&gt;
+  &lt;li&gt;Маркірований пункт 1&lt;/li&gt;
+  &lt;li&gt;Маркірований пункт 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Нумерований пункт 1&lt;/li&gt;
+  &lt;li&gt;Нумерований пункт 2&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+            <h3>Теорія</h3>
+            <ul>
+              <li><code>&lt;ul&gt;</code> — маркірований список, <code>&lt;ol&gt;</code> — нумерований, <code>&lt;li&gt;</code> — елемент списку.</li>
+              <li>Атрибут <code>type</code> для <code>&lt;ol&gt;</code> може змінювати нумерацію (1, A, a, I, i).</li>
+            </ul>
+          </section>
+
+          <section id="form" hidden>
+            <h3>HTML-код форми</h3>
+            <pre><code>&lt;form action="#" method="post"&gt;
+  &lt;label&gt;Ім'я:
+    &lt;input type="text" name="name" required&gt;
+  &lt;/label&gt;
+
+  &lt;label&gt;Email:
+    &lt;input type="email" name="email" required&gt;
+  &lt;/label&gt;
+
+  &lt;label&gt;Повідомлення:
+    &lt;textarea name="message" rows="4"&gt;&lt;/textarea&gt;
+  &lt;/label&gt;
+
+  &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </section>
+
+          <section id="html" hidden>
+            <h3>HTML-код (фрагмент)</h3>
+            <p>Тут можна вставити основні частини HTML-коду сторінки звіту або головної сторінки застосунку.</p>
+          </section>
+
+          <section id="homePage" hidden>
+            <h3>Головна сторінка WEB-застосунку</h3>
+            <p>Сюди додаєш скрін/опис головної сторінки твого реального застосунку (з іншого репозиторію).</p>
+          </section>
+
+          <section id="homeCode" hidden>
+            <h3>Код головної сторінки WEB-застосунку</h3>
+            <p>Сюди вставляєш HTML-код головної сторінки твого застосунку (або основний фрагмент).</p>
+          </section>
+
+        </div>
+
+        <!-- ========== PLACEHOLDERS FOR OTHER LABS ========== -->
+        <div class="lab" data-lab="lab2" hidden><p>Лабораторна №2 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab3" hidden><p>Лабораторна №3 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab4" hidden><p>Лабораторна №4 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab5" hidden><p>Лабораторна №5 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8 — контент додаси пізніше.</p></div>
+        <div class="lab" data-lab="lab9" hidden><p>Лабораторна №9 — контент додаси пізніше.</p></div>
+
+      </main>
+    </div>
+
+    <footer>
+      © Звітний HTML-документ лабораторних робіт (FIOT-2025)
+    </footer>
+  </div>
+
+  <script>
+    // Tabs: labs
+    const tabBar = document.getElementById('labTabs');
+    const labs = document.querySelectorAll('.lab');
+    const title = document.getElementById('contentTitle');
+
+    tabBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-lab]');
+      if(!btn) return;
+
+      tabBar.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const labId = btn.dataset.lab;
+      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
+
+      const n = labId.replace('lab','');
+      title.textContent = `Лабораторна робота №${n}`;
+
+      // при перемиканні лаби — показати перший розділ (meta)
+      setActiveSection('meta');
+    });
+
+    // Left menu: sections
+    const menu = document.getElementById('leftMenu');
+
+    function setActiveSection(sectionId){
+      // тільки всередині активної лаби
+      const activeLab = [...labs].find(l => !l.hidden);
+      if(!activeLab) return;
+
+      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
+
+      menu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      const activeBtn = menu.querySelector(`button[data-section="${sectionId}"]`);
+      if(activeBtn) activeBtn.classList.add('is-active');
+    }
+
+    menu.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-section]');
+      if(!btn) return;
+      setActiveSection(btn.dataset.section);
+    });
+  </script>
+</body>
+</html>
