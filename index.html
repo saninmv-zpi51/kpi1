@@ -63,15 +63,19 @@
     }
 
     .photo{
-      border: none;
+      width: 120px;
       height: 120px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      font-size:14px;
+      border: 2px solid var(--line);
+      overflow: hidden;
+      border-radius: 8px;
     }
+
+.photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
     .photo small{ color: var(--muted); }
 
     /* Tabs */
@@ -365,6 +369,17 @@
     .f18{ left: 90%; top:-200px; --fallDur: 54s; --spinDur: 44s; --driftX:0px; --driftTo:-20px; }
     .f19{ left: 95%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 25px; }
     .f20{ left: 98%; top:-150px; --fallDur: 48s; --spinDur: 38s; --driftX:0px; --driftTo:-30px; }
+
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img{
+      max-width: 80px;
+      max-height: 80px;
+    }
   </style>
 </head>
 
