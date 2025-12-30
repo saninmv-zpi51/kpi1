@@ -557,26 +557,52 @@
           </section>
 
           <section id="table" hidden>
-            <h3>HTML-код таблиці</h3>
+            <h3>HTML-код таблиці (інформація про виставки)</h3>
+
             <pre><code>&lt;table&gt;
-              &lt;caption&gt;Приклад таблиці&lt;/caption&gt;
-                &lt;thead&gt;
-               &lt;tr&gt;&lt;th&gt;Колонка 1&lt;/th&gt;&lt;th&gt;Колонка 2&lt;/th&gt;&lt;/tr&gt;
-                &lt;/thead&gt;
-              &lt;tbody&gt;
-                &lt;tr&gt;&lt;td&gt;Дані 1&lt;/td&gt;&lt;td&gt;Дані 2&lt;/td&gt;&lt;/tr&gt;
-              &lt;/tbody&gt;
-              &lt;/table&gt;
-            </code>
-            </pre>
+            &lt;caption&gt;Актуальні музейні виставки&lt;/caption&gt;
+
+            &lt;thead&gt;
+              &lt;tr&gt;
+                &lt;th&gt;Назва виставки&lt;/th&gt;
+                &lt;th&gt;Музей&lt;/th&gt;
+                &lt;th&gt;Дати проведення&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+
+            &lt;tbody&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Мистецтво ХХ століття&lt;/td&gt;
+                &lt;td&gt;Музей Ханенків&lt;/td&gt;
+                &lt;td&gt;01.03 – 30.04&lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;tr&gt;
+                &lt;td&gt;Український авангард&lt;/td&gt;
+                &lt;td&gt;NAMU&lt;/td&gt;
+                &lt;td&gt;15.04 – 20.06&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;</code></pre>
 
             <h3>Теорія (коротко)</h3>
             <ul>
-              <li><code>&lt;table&gt;</code> — контейнер таблиці.</li>
-              <li><code>&lt;tr&gt;</code> — рядок; <code>&lt;th&gt;</code> — заголовкова комірка; <code>&lt;td&gt;</code> — звичайна комірка.</li>
-              <li><code>&lt;caption&gt;</code> — підпис таблиці; <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code> — логічні частини.</li>
+              <li><code>&lt;table&gt;</code> — контейнер для табличних даних.</li>
+              <li><code>&lt;tr&gt;</code> — рядок таблиці.</li>
+              <li><code>&lt;th&gt;</code> — заголовкова комірка (назви колонок).</li>
+              <li><code>&lt;td&gt;</code> — комірка з даними.</li>
+              <li><code>&lt;caption&gt;</code> — підпис таблиці.</li>
+              <li><code>&lt;thead&gt;</code> та <code>&lt;tbody&gt;</code> — логічне розділення заголовку і вмісту.</li>
             </ul>
-            <p><em>Скріншот таблиці вставиш тут окремо як &lt;img&gt; після того, як зробиш скрін.</em></p>
+
+            <p>
+              Таблиця використовується для структурованого відображення інформації
+              про музейні виставки у WEB-застосунку «Exhibitum».
+            </p>
+
+            <p>
+              <em>Скріншот відображення таблиці у браузері додається нижче у вигляді зображення.</em>
+            </p>
           </section>
 
           <section id="image" hidden>
@@ -592,59 +618,108 @@
           </section>
 
           <section id="list" hidden>
-            <h3>HTML-код списків</h3>
-            <pre><code>&lt;ul&gt;
-  &lt;li&gt;Маркірований пункт 1&lt;/li&gt;
-  &lt;li&gt;Маркірований пункт 2&lt;/li&gt;
-&lt;/ul&gt;
+            <h3>HTML-код списків (використання у WEB-застосунку «Exhibitum»)</h3>
 
-&lt;ol&gt;
-  &lt;li&gt;Нумерований пункт 1&lt;/li&gt;
-  &lt;li&gt;Нумерований пункт 2&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
+            <pre><code>&lt;!-- Маркірований список: можливості користувача --&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Перегляд актуальних музейних виставок&lt;/li&gt;
+            &lt;li&gt;Ознайомлення з описом експозицій&lt;/li&gt;
+            &lt;li&gt;Навігація між розділами сайту&lt;/li&gt;
+          &lt;/ul&gt;
+
+          &lt;!-- Нумерований список: дії користувача --&gt;
+          &lt;ol&gt;
+            &lt;li&gt;Вибір музею або виставки&lt;/li&gt;
+            &lt;li&gt;Перегляд детальної інформації&lt;/li&gt;
+            &lt;li&gt;Ознайомлення з датами та місцем проведення&lt;/li&gt;
+          &lt;/ol&gt;</code></pre>
 
             <h3>Теорія</h3>
             <ul>
-              <li><code>&lt;ul&gt;</code> — маркірований список, <code>&lt;ol&gt;</code> — нумерований, <code>&lt;li&gt;</code> — елемент списку.</li>
-              <li>Атрибут <code>type</code> для <code>&lt;ol&gt;</code> може змінювати нумерацію (1, A, a, I, i).</li>
+              <li><code>&lt;ul&gt;</code> — маркірований список, використовується для переліку можливостей або характеристик.</li>
+              <li><code>&lt;ol&gt;</code> — нумерований список, застосовується для відображення послідовності дій.</li>
+              <li><code>&lt;li&gt;</code> — елемент списку.</li>
+              <li>Атрибут <code>type</code> для <code>&lt;ol&gt;</code> дозволяє змінювати тип нумерації (1, A, a, I, i).</li>
             </ul>
+
+            <p>
+              Списки використовуються у WEB-застосунку «Exhibitum» для структурованого
+              подання функціональних можливостей, вимог та логіки взаємодії користувача з системою.
+            </p>
           </section>
 
           <section id="form" hidden>
-            <h3>HTML-код форми</h3>
+            <h3>HTML-код форми (зворотний зв’язок у WEB-застосунку «Exhibitum»)</h3>
+
             <pre><code>&lt;form action="#" method="post"&gt;
-              &lt;label&gt;Ім'я:
-                &lt;input type="text" name="name" required&gt;
-              &lt;/label&gt;
 
-              &lt;label&gt;Email:
-                &lt;input type="email" name="email" required&gt;
-              &lt;/label&gt;
+            &lt;label&gt;Ім’я користувача:
+              &lt;input type="text" name="username" placeholder="Введіть ім’я" required&gt;
+            &lt;/label&gt;
 
-              &lt;label&gt;Повідомлення:
-                &lt;textarea name="message" rows="4"&gt;&lt;/textarea&gt;
-              &lt;/label&gt;
+            &lt;label&gt;Електронна пошта:
+              &lt;input type="email" name="email" placeholder="email@example.com" required&gt;
+            &lt;/label&gt;
 
-              &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
-              &lt;/form&gt;</code></pre>
+            &lt;label&gt;Тема звернення:
+              &lt;select name="topic"&gt;
+                &lt;option value="exhibition"&gt;Питання щодо виставки&lt;/option&gt;
+                &lt;option value="museum"&gt;Інформація про музей&lt;/option&gt;
+                &lt;option value="tickets"&gt;Квитки&lt;/option&gt;
+                &lt;option value="other"&gt;Інше&lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/label&gt;
+
+            &lt;label&gt;Повідомлення:
+              &lt;textarea name="message" rows="4" placeholder="Ваше повідомлення..."&gt;&lt;/textarea&gt;
+            &lt;/label&gt;
+
+            &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+
+          &lt;/form&gt;</code></pre>
+
+            <h3>Теорія</h3>
+            <ul>
+              <li><code>&lt;form&gt;</code> — контейнер для елементів введення даних користувача.</li>
+              <li><code>&lt;input&gt;</code> — однорядкове поле введення (текст, email тощо).</li>
+              <li><code>&lt;textarea&gt;</code> — багаторядкове поле для введення повідомлення.</li>
+              <li><code>&lt;select&gt;</code> та <code>&lt;option&gt;</code> — елементи вибору зі списку.</li>
+              <li>Атрибут <code>required</code> забезпечує перевірку обовʼязкових полів на рівні браузера.</li>
+            </ul>
+
+            <p>
+              Дана форма використовується у WEB-застосунку «Exhibitum» для організації
+              зворотного звʼязку між користувачами та адміністрацією платформи.
+            </p>
           </section>
 
           <section id="html" hidden>
-            <h3>HTML-код (фрагмент)</h3>
-            <pre><code>&lt;header&gt;
-              &lt;div class="title"&gt;
-                &lt;h1&gt;ZPI-51_appWEB-SaninMariia-FIOT-2025&lt;/h1&gt;
-                &lt;h2&gt;з дисципліни «Проєктування WEB-застосунків»&lt;/h2&gt;
-                &lt;p&gt;
-                  &lt;strong&gt;Виконавець:&lt;/strong&gt;
-                  студентка групи ЗПІ-зп-51,
-                  &lt;strong&gt;ПІБ:&lt;/strong&gt;
-                  Санін Марія Валеріївна
-                &lt;/p&gt;
-              &lt;/div&gt;
-            &lt;/header&gt;
-            </code></pre>
+            <h3>HTML-код (фрагмент головної сторінки WEB-застосунку)</h3>
+
+            <pre><code>&lt;header class="header"&gt;
+
+            &lt;div class="header__logo"&gt;
+              &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
+            &lt;/div&gt;
+
+            &lt;nav class="nav" aria-label="Навігація"&gt;
+              &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
+              &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
+              &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
+              &lt;a href="article.html"&gt;Статті&lt;/a&gt;
+              &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
+            &lt;/nav&gt;
+
+          &lt;/header&gt;</code></pre>
+
+            <p>
+              Наведений фрагмент HTML-коду демонструє використання семантичних тегів
+              <code>&lt;header&gt;</code> та <code>&lt;nav&gt;</code> у головній частині
+              WEB-застосунку «Exhibitum». Навігаційне меню забезпечує зручний перехід
+              між основними розділами сайту.
+            </p>
           </section>
+
 
           <section id="homePage" hidden>
             <h3>Головна сторінка WEB-застосунку</h3>
@@ -659,27 +734,53 @@
 
           <section id="homeCode" hidden>
             <h3>Код головної сторінки WEB-застосунку</h3>
-            <pre><code>&lt;header&gt;
-              &lt;h1&gt;Інформація про музейні виставки&lt;/h1&gt;
-              &lt;nav&gt;
-                &lt;ul&gt;
-                  &lt;li&gt;&lt;a href="#exhibitions"&gt;Виставки&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href="#museums"&gt;Музеї&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href="#contacts"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/nav&gt;
-            &lt;/header&gt;
 
-            &lt;main&gt;
-              &lt;section id="exhibitions"&gt;
-                &lt;h2&gt;Поточні виставки&lt;/h2&gt;
-                &lt;p&gt;
-                  На сторінці представлено актуальну інформацію
-                  про музейні виставки та культурні події.
-                &lt;/p&gt;
-              &lt;/section&gt;
-            &lt;/main&gt;
-            </code></pre>
+            <pre><code>&lt;header class="header"&gt;
+
+            &lt;div class="header__logo"&gt;
+              &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
+            &lt;/div&gt;
+
+            &lt;nav class="nav" aria-label="Навігація"&gt;
+              &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
+              &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
+              &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
+              &lt;a href="article.html"&gt;Статті&lt;/a&gt;
+              &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
+            &lt;/nav&gt;
+
+          &lt;/header&gt;
+
+          &lt;main class="home"&gt;
+
+            &lt;section class="hero"&gt;
+              &lt;h1&gt;Актуальні музейні виставки&lt;/h1&gt;
+              &lt;p&gt;
+                Платформа Exhibitum надає інформацію про
+                поточні та майбутні культурні події в музеях України.
+              &lt;/p&gt;
+            &lt;/section&gt;
+
+            &lt;section class="exhibitions"&gt;
+              &lt;h2&gt;Виставки&lt;/h2&gt;
+              &lt;!-- картки виставок --&gt;
+            &lt;/section&gt;
+
+          &lt;/main&gt;
+
+          &lt;footer class="footer"&gt;
+            &lt;p&gt;© Exhibitum, 2025&lt;/p&gt;
+          &lt;/footer&gt;</code></pre>
+
+            <p>
+              Наведений HTML-код демонструє структуру головної сторінки
+              WEB-застосунку «Exhibitum», яка містить семантичні елементи
+              <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+              <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code> та
+              <code>&lt;footer&gt;</code>.
+              Головна сторінка забезпечує доступ до інформації про виставки
+              та навігацію між розділами сайту.
+            </p>
           </section>
 
         </div>
