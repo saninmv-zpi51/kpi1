@@ -782,6 +782,255 @@
               та навігацію між розділами сайту.
             </p>
           </section>
+          <section id="lab2" hidden>
+            <h3>Тема ЛР №2</h3>
+            <p>
+              Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів.
+              Селектори тегу, класу, ідентифікатора.
+            </p>
+
+            <h3>Мета ЛР №2</h3>
+            <p>
+              Набути практичних навичок роботи з CSS: селекторами тегу/класу/id, властивостями
+              тексту, шрифтів, фону, контурів, відступів, списків та базовими прийомами
+              стилізації сторінок у власному WEB-застосунку «Exhibitum».
+            </p>
+
+            <h3>Місце розташування сайту та звіту</h3>
+            <ul>
+              <li>Репозиторій WEB-застосунку «Exhibitum»: <em>(вставиш посилання)</em></li>
+              <li>Жива сторінка WEB-застосунку: <em>(вставиш посилання)</em></li>
+              <li>Репозиторій звітного HTML-документа: <em>(вставиш посилання)</em></li>
+              <li>Жива сторінка звіту: <em>(вставиш посилання)</em></li>
+            </ul>
+          </section>
+          <section id="cssConnect" hidden>
+            <h3>Способи підключення стилів</h3>
+
+            <h4>1) Зовнішній CSS-файл (використано у «Exhibitum»)</h4>
+            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+            <h4>2) Внутрішні стилі (приклад)</h4>
+            <pre><code>&lt;style&gt;
+            body{ font-family: Arial, sans-serif; }
+          &lt;/style&gt;</code></pre>
+
+            <h4>3) Інлайн-стиль (приклад)</h4>
+            <pre><code>&lt;h1 style="color:#00595C;"&gt;Exhibitum&lt;/h1&gt;</code></pre>
+
+            <p>
+              У проєкті «Exhibitum» основним способом є підключення зовнішнього CSS-файлу,
+              оскільки це забезпечує централізоване керування стилями та зручність підтримки.
+            </p>
+          </section>
+          <section id="tagSelectors" hidden>
+            <h3>Селектори тегу</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;body&gt;
+            &lt;header class="header"&gt;...&lt;/header&gt;
+            &lt;main&gt;...&lt;/main&gt;
+          &lt;/body&gt;</code></pre>
+
+            <h4>CSS (фрагмент з проєкту)</h4>
+            <pre><code>body{
+            margin: 0;
+            background: var(--white);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          }</code></pre>
+
+            <p><em>Скріншот результату (додаси після):</em></p>
+            <pre><code>&lt;img src="images/screens/lab2_tagselector.png" alt="Скрін: селектор тегу body"&gt;</code></pre>
+          </section>
+          <section id="classSelectors" hidden>
+            <h3>Селектори класу</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;header class="header"&gt;
+            &lt;nav class="nav"&gt;
+              &lt;a class="pill is-active" href="about.html"&gt;Про проєкт&lt;/a&gt;
+            &lt;/nav&gt;
+          &lt;/header&gt;</code></pre>
+
+            <h4>CSS (фрагмент з проєкту)</h4>
+            <pre><code>.header{
+            padding: 32px;
+            background: var(--teal);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+          }
+
+          .pill{
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            font-family: "Zen Old Mincho", serif;
+            font-size: 16px;
+            line-height: 16px;
+          }
+
+          .pill.is-active{ background: var(--pill); }</code></pre>
+
+            <p><em>Скріншот результату (додаси після):</em></p>
+            <pre><code>&lt;img src="images/screens/lab2_classselector.png" alt="Скрін: стилізація .header та .pill"&gt;</code></pre>
+          </section>
+          <section id="idSelectors" hidden>
+            <h3>Селектори ідентифікаторів</h3>
+
+            <h4>HTML (фрагмент)</h4>
+            <pre><code>&lt;div class="museum__bar--carousel"&gt;
+            &lt;div id="museumStrip" class="museum-strip"&gt;
+              &lt;img class="museum-strip__logo" src="images/logo-ivan-honchar.webp" alt="..."&gt;
+              ...
+            &lt;/div&gt;
+          &lt;/div&gt;</code></pre>
+
+            <h4>CSS (приклад використання #id)</h4>
+            <pre><code>#museumStrip{
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            height: 100%;
+            transition: transform 1.2s ease-in-out;
+            will-change: transform;
+          }</code></pre>
+
+            <p>
+              Ідентифікатор використовується для звернення до конкретного елемента сторінки.
+              У проєкті #museumStrip застосовується для керування горизонтальною смужкою логотипів.
+            </p>
+
+            <p><em>Скріншот результату (додаси після):</em></p>
+            <pre><code>&lt;img src="images/screens/lab2_idselector.png" alt="Скрін: #museumStrip"&gt;</code></pre>
+          </section>
+          <section id="otherSelectors" hidden>
+            <h3>Інші селектори</h3>
+
+            <h4>Універсальний селектор *</h4>
+            <pre><code>*{ box-sizing: border-box; }</code></pre>
+
+            <h4>Дочірній селектор (A B)</h4>
+            <pre><code>.header__logo img{
+            height: 100%;
+            width: auto;
+            display: block;
+            object-fit: contain;
+          }</code></pre>
+
+            <h4>Сусідній селектор (A + B) — приклад</h4>
+            <pre><code>h2 + p{
+            margin-top: 6px;
+          }</code></pre>
+
+            <h4>Селектор атрибута — приклад</h4>
+            <pre><code>a[aria-label]{
+            text-decoration: none;
+          }</code></pre>
+
+            <p>
+              Універсальний селектор застосовується для базового налаштування,
+              дочірній — для стилізації елементів всередині блоків,
+              селектор сусіднього елемента — для керування відступами,
+              селектор атрибута — для точкової стилізації елементів за атрибутами.
+            </p>
+          </section>
+          <section id="cssShowcase" hidden>
+            <h3>CSS: Шрифти Текст Таблиці Фон Контур Списки CSS Просунутий</h3>
+
+            <h4>Шрифти та текст</h4>
+            <pre><code>body{
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--text);
+          }
+
+          .footer__text{
+            font-size: 14px;
+            color: rgba(255,255,255,0.80);
+          }</code></pre>
+
+            <h4>Фон і кольори (палітра через CSS-змінні)</h4>
+            <pre><code>:root{
+            --teal: #00595C;
+            --teal-dark: #032F30;
+            --border: #D9D9D9;
+            --pill: #F5F5F5;
+            --text: #1E1E1E;
+            --white: #ffffff;
+          }
+
+          .header{ background: var(--teal); }
+          .museum{ background: var(--teal-dark); }</code></pre>
+
+            <h4>Відступи та “контури” (border, radius)</h4>
+            <pre><code>.btn{
+            border-radius: 8px;
+            padding: 8px 10px;
+            border: 1px solid #767676;
+          }
+
+          .museum-vertical{
+            border-radius: 14px;
+            overflow: hidden;
+          }</code></pre>
+
+            <h4>Списки</h4>
+            <pre><code>.about__block ul{
+            padding-left: 20px;
+          }</code></pre>
+
+            <h4>CSS “просунутий” (анімація + псевдоелементи)</h4>
+            <pre><code>.about-content::before{
+            content:"";
+            display:block;
+            height:80px;
+            background-color:#D9FEFF;
+            background-image:url("images/ornament.png");
+            background-repeat:repeat-x;
+            background-size:contain;
+            opacity:0.5;
+            animation: ornament-drift 40s linear infinite;
+          }
+
+          @keyframes ornament-drift{
+            from{ background-position-x: 0; }
+            to{ background-position-x: 1000px; }
+          }</code></pre>
+
+            <h4>Таблиці (для звіту / приклад)</h4>
+            <pre><code>table{
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+          th, td{
+            border: 1px solid #D9D9D9;
+            padding: 8px 10px;
+          }</code></pre>
+
+            <p>
+              У проєкті «Exhibitum» застосовано стилізацію тексту, кольорів та фону,
+              border/radius, списків, а також просунуті можливості CSS (анімації, псевдоелементи,
+              mask-image для логотипу та декоративні ефекти).
+            </p>
+          </section>
+          <section id="lab2Conclusion" hidden>
+            <h3>Висновки до ЛР №2</h3>
+            <p>
+              У ході лабораторної роботи №2 було застосовано каскадні таблиці стилів для
+              оформлення елементів WEB-застосунку «Exhibitum». Реалізовано стилізацію за
+              допомогою селекторів тегу, класу та ідентифікатора, а також використано інші
+              типи селекторів. Налаштовано шрифти, кольори, фони, відступи, border/radius,
+              оформлення списків та додаткові ефекти (псевдоелементи, анімації). Отримано
+              практичні навички структурованого підключення та підтримки CSS для кількох
+              сторінок проєкту.
+            </p>
+          </section>
 
         </div>
 
