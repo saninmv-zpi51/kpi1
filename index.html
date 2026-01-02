@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZPI-51_appWEB-SaninMariia-FIOT-2025</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -23,7 +24,13 @@
       margin:0;
       font-family: 'Bona Nova', serif;
       color: #00232e;
-      background:var(--bg);
+
+      /* animated background */
+      background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #088092);
+      background-size: 200% 200%;
+      animation: bgGradient 18s ease infinite;
+
+      position: relative;
     }
 
     /* Page */
@@ -31,7 +38,9 @@
       max-width: 1100px;
       margin: 18px auto;
       padding: 14px 16px 20px;
-      border: 2px solid transparent; 
+      border: 2px solid transparent;
+      position: relative;
+      z-index: 2;
     }
 
     header{
@@ -69,14 +78,14 @@
       overflow: hidden;
       border-radius: 8px;
     }
-
-.photo img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-    .photo small{ color: var(--muted); }
+    .photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+    .photo img:hover{ opacity: 1; }
 
     /* Tabs */
     .tabs{
@@ -121,20 +130,20 @@
         color: #063c4d;
         box-shadow: 0px 0px 4px #548384;
     }
+
     .layout{
       display:grid;
       grid-template-columns: 300px 1fr;
       gap: 16px;
       align-items:start;
     }
-    aside{
-      padding-top: 4px;
-    }
+    aside{ padding-top: 4px; }
+    
+
     .menu{
       display:flex;
       flex-direction:column;
       gap: 10px;
-      
     }
     .menu button{
       border: none;
@@ -173,9 +182,8 @@
       text-align:center;
       padding: 12px 14px;
     }
-    .menu .wide{
-      padding: 14px 14px;
-    }
+    .menu .wide{ padding: 14px 14px; }
+    
 
     /* Main content frame */
     main{
@@ -183,6 +191,9 @@
       min-height: 520px;
       padding: 18px;
       position:relative;
+      background: rgba(255,255,255,0.65);
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
     }
     .content-title{
       text-align:center;
@@ -198,14 +209,9 @@
     }
 
     section[hidden]{ display:none !important; }
-    section h3{
-      margin: 12px 0 8px;
-      font-size: 16px;
-    }
-    section p, section li{
-      font-size: 14px;
-      line-height:1.35;
-    }
+    section h3{ margin: 12px 0 8px; font-size: 16px; }
+    section h4{ margin: 10px 0 8px; font-size: 14px; }
+    section p, section li{ font-size: 14px; line-height:1.35; }
     code, pre{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       font-size: 13px;
@@ -230,105 +236,91 @@
       .layout{ grid-template-columns: 1fr; }
       .tabs{ justify-content:flex-start; }
     }
-    .photo-frame{
-        width: 150px;
-        height: 120px;
-        overflow: hidden;
-        position: relative;
-        background: #fff;
-    }
 
-    .photo-frame img{
-        transform: scale(1.2);
-        transform-origin: center;
+    /* Logos */
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    body{
-        background: linear-gradient(120deg, #B4DBDB, #CDF0F6, #088092);
-        background-size: 200% 200%;
-        animation: bgGradient 18s ease infinite;
-        position: relative;
+    .logo img{
+      max-width: 80px;
+      max-height: 80px;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
     }
+    .logo img:hover{ opacity: 1; }
+
+    /* animated blobs overlay */
     body::before,
     body::after{
-        content:"";
-        position: fixed;
-        inset: -40px;              
-        z-index: -1;               
-        pointer-events: none;
-        opacity: 0.55;
-        filter: blur(10px);
-    transform: translateZ(0); 
+      content:"";
+      position: fixed;
+      inset: -40px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.55;
+      filter: blur(10px);
+      transform: translateZ(0);
     }
-
     body::before{
-        background:
-            radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35), transparent 45%),
-            radial-gradient(circle at 75% 40%, rgba(255,255,255,0.22), transparent 50%),
-            radial-gradient(circle at 50% 80%, rgba(0,133,153,0.18), transparent 55%);
-        animation: blobs1 26s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35), transparent 45%),
+        radial-gradient(circle at 75% 40%, rgba(255,255,255,0.22), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(0,133,153,0.18), transparent 55%);
+      animation: blobs1 26s ease-in-out infinite;
     }
     body::after{
-        background:
-            radial-gradient(circle at 35% 65%, rgba(255,255,255,0.18), transparent 48%),
-            radial-gradient(circle at 85% 75%, rgba(84,131,132,0.16), transparent 55%),
-            radial-gradient(circle at 10% 85%, rgba(144,197,205,0.20), transparent 60%);
-        animation: blobs2 34s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 35% 65%, rgba(255,255,255,0.18), transparent 48%),
+        radial-gradient(circle at 85% 75%, rgba(84,131,132,0.16), transparent 55%),
+        radial-gradient(circle at 10% 85%, rgba(144,197,205,0.20), transparent 60%);
+      animation: blobs2 34s ease-in-out infinite;
     }
 
     @keyframes bgGradient{
-        0%{ background-position: 0% 50%; }
-        50%{ background-position: 100% 50%; }
-        100%{ background-position: 0% 50%; }
+      0%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+      100%{ background-position: 0% 50%; }
     }
-
     @keyframes blobs1{
-        0%{ transform: translate(0,0) scale(1); }
-        50%{ transform: translate(-18px, 14px) scale(1.05); }
-        100%{ transform: translate(0,0) scale(1); }
+      0%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(-18px, 14px) scale(1.05); }
+      100%{ transform: translate(0,0) scale(1); }
     }
-
     @keyframes blobs2{
-        0%{ transform: translate(0,0) scale(1); }
-        50%{ transform: translate(16px, -12px) scale(1.06); }
-        100%{ transform: translate(0,0) scale(1); }
+      0%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(16px, -12px) scale(1.06); }
+      100%{ transform: translate(0,0) scale(1); }
     }
 
-    .page{ position: relative; z-index: 0; 
-    }
+    /* Kyiv strip */
     .kyiv-strip{
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 120px;         
+      height: 120px;
       background-image: url("images/kyiv.png");
       opacity: 0.75;
       background-repeat: repeat-x;
       background-position: 0 bottom;
       background-size: auto 100%;
       animation: kyiv-move 200s linear infinite;
-      pointer-events: none;    
+      pointer-events: none;
       z-index: 0;
     }
-
     @keyframes kyiv-move{
-      from{
-        background-position-x: 0;
-      }
-      to{
-        background-position-x: -2000px;
-      }
+      from{ background-position-x: 0; }
+      to{ background-position-x: -2000px; }
     }
-  
-    .page{
-      position: relative;
-      z-index: 2;
-    }
+
+    /* Snow */
     .snow-bg{
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 1;    
+      z-index: 1;
       overflow: hidden;
     }
     .flake{
@@ -337,12 +329,10 @@
       height: 22px;
       background: url("images/snow.png") no-repeat center / contain;
       opacity: 0.65;
-
       animation:
         fall var(--fallDur) linear infinite,
         spin var(--spinDur) linear infinite;
     }
-
     @keyframes fall{
       from { transform: translate(var(--driftX), -40px) rotate(0deg); }
       to   { transform: translate(calc(var(--driftX) + var(--driftTo)), 110vh) rotate(0deg); }
@@ -372,26 +362,9 @@
     .f19{ left: 95%; top:-80px;  --fallDur: 32s; --spinDur: 24s; --driftX:0px; --driftTo: 25px; }
     .f20{ left: 98%; top:-150px; --fallDur: 48s; --spinDur: 38s; --driftX:0px; --driftTo:-30px; }
 
-    .logo{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .logo img{
-      max-width: 80px;
-      max-height: 80px;
-    }
-    .logo img,
-      .photo img{
-        opacity: 0.75;
-        transition: opacity 0.3s ease;
-      }
-
-      .logo img:hover,
-      .photo img:hover{
-        opacity: 1;
-      }
+    [hidden]{
+  display: none !important;
+}
   </style>
 </head>
 
@@ -402,6 +375,7 @@
       <div class="logo logo1">
         <img src="images/logo1.png" alt="Герб КПІ">
       </div>
+
       <div class="title">
         <h1>ZPI-51_appWEB-SaninMariia-FIOT-2025</h1>
         <h2>з дисципліни «Проєктування WEB-застосунків»</h2>
@@ -414,17 +388,17 @@
       <div class="photo" aria-label="Фото студента">
         <img src="images/photo.png" alt="Фото студента">
       </div>
+
       <div class="logo logo2">
         <img src="images/logo2.png" alt="Герб ФІОТ">
       </div>
     </header>
 
-
     <!-- Tabs for labs -->
     <nav aria-label="Вкладки лабораторних робіт">
       <ul class="tabs" id="labTabs">
         <li><button class="is-active" data-lab="lab1">Лабораторна робота №1</button></li>
-        <li><button class="is-active" data-lab="lab2">Лабораторна робота №2</button></li>
+        <li><button data-lab="lab2">Лабораторна робота №2</button></li>
         <li><button data-lab="lab3">Лабораторна робота №3</button></li>
         <li><button data-lab="lab4">Лабораторна робота №4</button></li>
         <li><button data-lab="lab5">Лабораторна робота №5</button></li>
@@ -438,7 +412,8 @@
     <div class="layout">
       <!-- Left menu -->
       <aside>
-        <div class="menu" id="leftMenu">
+        <!-- LAB 1 MENU -->
+        <div class="menu" id="leftMenuLab1">
           <button class="is-active wide" data-section="meta">Тема Мета Місце<br>розташування сайту, звіту</button>
           <button class="wide" data-section="logic">Опис предметного середовища.<br>Опис бізнес-логіки</button>
           <button class="wide" data-section="structure">Структура документа</button>
@@ -452,12 +427,27 @@
           <button class="wide" data-section="homePage">Головна сторінка WEB-застосунку</button>
           <button class="wide" data-section="homeCode">Код головної сторінки WEB-застосунку</button>
         </div>
+
+        <!-- LAB 2 MENU -->
+        <div class="menu" id="leftMenuLab2" hidden>
+          <button class="is-active wide" data-section="lab2meta">Тема, мета, посилання (ЛР2)</button>
+          <button class="wide" data-section="cssConnect">Способи підключення стилів</button>
+
+          <button class="wide" data-section="tagSelectors">Селектори тегу</button>
+          <button class="wide" data-section="classSelectors">Селектори класу</button>
+          <button class="wide" data-section="idSelectors">Селектори ідентифікаторів</button>
+          <button class="wide" data-section="otherSelectors">Інші селектори</button>
+
+          <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
+          <button class="wide" data-section="lab2Conclusion">Висновки ЛР2</button>
+        </div>
       </aside>
 
       <main aria-label="Місце виведення інформації">
         <h3 class="content-title" id="contentTitle">Лабораторна робота №1</h3>
         <p class="hint" id="contentHint"></p>
 
+        <!-- LAB 1 -->
         <div class="lab" data-lab="lab1">
 
           <section id="meta" aria-labelledby="h-meta">
@@ -467,8 +457,8 @@
 
             <h3>Посилання</h3>
             <ul>
-              <li>Репозиторій WEB-застосунку: <a href="https://github.com/saninmv-zpi51/lab1" target="_blank" rel="noreferrer"> https://github.com/saninmv-zpi51/lab1</a></li>
-              <li>Жива сторінка WEB-застосунку (GitHub Pages):  <a href="https://saninmv-zpi51.github.io/lab1/" target="_blank" rel="noreferrer"> https://saninmv-zpi51.github.io/lab1/</a></li>
+              <li>Репозиторій WEB-застосунку: <a href="https://github.com/saninmv-zpi51/lab1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/lab1</a></li>
+              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="https://saninmv-zpi51.github.io/lab1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/lab1/</a></li>
               <li>Репозиторій звіту (appRECORD): <a href="https://github.com/saninmv-zpi51/kpi1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/kpi1</a></li>
               <li>Жива сторінка звіту: <a href="https://saninmv-zpi51.github.io/kpi1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/kpi1/</a></li>
             </ul>
@@ -520,39 +510,36 @@
             <h3>Структура WEB-застосунку «Exhibitum» (семантична верстка)</h3>
 
             <pre><code>&lt;header&gt;
-            &lt;div class="header__logo"&gt;...&lt;/div&gt;
-            &lt;nav&gt;...&lt;/nav&gt;
-            &lt;div class="auth"&gt;...&lt;/div&gt;
-          &lt;/header&gt;
+  &lt;div class="header__logo"&gt;...&lt;/div&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  &lt;div class="auth"&gt;...&lt;/div&gt;
+&lt;/header&gt;
 
-          &lt;main&gt;
+&lt;main&gt;
 
-            &lt;section class="hero"&gt;...&lt;/section&gt;
+  &lt;section class="hero"&gt;...&lt;/section&gt;
 
-            &lt;section class="exhibitions"&gt;
-              &lt;article&gt;...&lt;/article&gt;
-              &lt;article&gt;...&lt;/article&gt;
-            &lt;/section&gt;
+  &lt;section class="exhibitions"&gt;
+    &lt;article&gt;...&lt;/article&gt;
+    &lt;article&gt;...&lt;/article&gt;
+  &lt;/section&gt;
 
-          &lt;/main&gt;
+&lt;/main&gt;
 
-          &lt;footer&gt;
-            &lt;section class="footer__col"&gt;...&lt;/section&gt;
-            &lt;/footer&gt;</code></pre>
+&lt;footer&gt;
+  &lt;section class="footer__col"&gt;...&lt;/section&gt;
+&lt;/footer&gt;</code></pre>
 
             <p>
               Структура WEB-застосунку побудована з використанням семантичних HTML5-тегів
               <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
               <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> та
-              <code>&lt;footer&gt;</code>. Основний контент сторінки розміщений у
-              блоці <code>&lt;main&gt;</code>, що покращує доступність та логічну
-              організацію документа.
+              <code>&lt;footer&gt;</code>.
             </p>
 
             <p>
               У звітному HTML-документі додатково наведено приклади використання
-              таблиць, зображень, маркованих списків та елементів форм, а також
-              скріншоти результатів їх відображення у браузері.
+              таблиць, зображень, маркованих списків та елементів форм.
             </p>
           </section>
 
@@ -560,60 +547,51 @@
             <h3>HTML-код таблиці (інформація про виставки)</h3>
 
             <pre><code>&lt;table&gt;
-            &lt;caption&gt;Актуальні музейні виставки&lt;/caption&gt;
+  &lt;caption&gt;Актуальні музейні виставки&lt;/caption&gt;
 
-            &lt;thead&gt;
-              &lt;tr&gt;
-                &lt;th&gt;Назва виставки&lt;/th&gt;
-                &lt;th&gt;Музей&lt;/th&gt;
-                &lt;th&gt;Дати проведення&lt;/th&gt;
-              &lt;/tr&gt;
-            &lt;/thead&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Назва виставки&lt;/th&gt;
+      &lt;th&gt;Музей&lt;/th&gt;
+      &lt;th&gt;Дати проведення&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
 
-            &lt;tbody&gt;
-              &lt;tr&gt;
-                &lt;td&gt;Мистецтво ХХ століття&lt;/td&gt;
-                &lt;td&gt;Музей Ханенків&lt;/td&gt;
-                &lt;td&gt;01.03 – 30.04&lt;/td&gt;
-              &lt;/tr&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Мистецтво ХХ століття&lt;/td&gt;
+      &lt;td&gt;Музей Ханенків&lt;/td&gt;
+      &lt;td&gt;01.03 – 30.04&lt;/td&gt;
+    &lt;/tr&gt;
 
-              &lt;tr&gt;
-                &lt;td&gt;Український авангард&lt;/td&gt;
-                &lt;td&gt;NAMU&lt;/td&gt;
-                &lt;td&gt;15.04 – 20.06&lt;/td&gt;
-              &lt;/tr&gt;
-            &lt;/tbody&gt;
-          &lt;/table&gt;</code></pre>
+    &lt;tr&gt;
+      &lt;td&gt;Український авангард&lt;/td&gt;
+      &lt;td&gt;NAMU&lt;/td&gt;
+      &lt;td&gt;15.04 – 20.06&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 
             <h3>Теорія (коротко)</h3>
             <ul>
               <li><code>&lt;table&gt;</code> — контейнер для табличних даних.</li>
               <li><code>&lt;tr&gt;</code> — рядок таблиці.</li>
-              <li><code>&lt;th&gt;</code> — заголовкова комірка (назви колонок).</li>
+              <li><code>&lt;th&gt;</code> — заголовкова комірка.</li>
               <li><code>&lt;td&gt;</code> — комірка з даними.</li>
               <li><code>&lt;caption&gt;</code> — підпис таблиці.</li>
               <li><code>&lt;thead&gt;</code> та <code>&lt;tbody&gt;</code> — логічне розділення заголовку і вмісту.</li>
             </ul>
-
-            <p>
-              Таблиця використовується для структурованого відображення інформації
-              про музейні виставки у WEB-застосунку «Exhibitum».
-            </p>
-
-            <p>
-              <em>Скріншот відображення таблиці у браузері додається нижче у вигляді зображення.</em>
-            </p>
           </section>
 
           <section id="image" hidden>
             <h3>HTML-код зображення</h3>
-            <pre><code>&lt;img src="images/example.png" alt="Опис зображення" width="400"&gt;</code></pre>
+            <pre><code>&lt;img src="images/homepage2.png" alt="Головна сторінка Exhibitum" style="max-width:100%;"&gt;</code></pre>
 
             <h3>Теорія (атрибути)</h3>
             <ul>
               <li><code>src</code> — шлях до зображення.</li>
-              <li><code>alt</code> — альтернативний текст (важливо для доступності та якщо файл не завантажився).</li>
-              <li><code>width</code>/<code>height</code> — розміри (краще контролювати через CSS, але в лабі можна показати атрибути).</li>
+              <li><code>alt</code> — альтернативний текст (доступність).</li>
+              <li><code>width</code>/<code>height</code> — розміри (краще керувати через CSS).</li>
             </ul>
           </section>
 
@@ -621,31 +599,25 @@
             <h3>HTML-код списків (використання у WEB-застосунку «Exhibitum»)</h3>
 
             <pre><code>&lt;!-- Маркірований список: можливості користувача --&gt;
-          &lt;ul&gt;
-            &lt;li&gt;Перегляд актуальних музейних виставок&lt;/li&gt;
-            &lt;li&gt;Ознайомлення з описом експозицій&lt;/li&gt;
-            &lt;li&gt;Навігація між розділами сайту&lt;/li&gt;
-          &lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li&gt;Перегляд актуальних музейних виставок&lt;/li&gt;
+  &lt;li&gt;Ознайомлення з описом експозицій&lt;/li&gt;
+  &lt;li&gt;Навігація між розділами сайту&lt;/li&gt;
+&lt;/ul&gt;
 
-          &lt;!-- Нумерований список: дії користувача --&gt;
-          &lt;ol&gt;
-            &lt;li&gt;Вибір музею або виставки&lt;/li&gt;
-            &lt;li&gt;Перегляд детальної інформації&lt;/li&gt;
-            &lt;li&gt;Ознайомлення з датами та місцем проведення&lt;/li&gt;
-          &lt;/ol&gt;</code></pre>
+&lt;!-- Нумерований список: дії користувача --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Вибір музею або виставки&lt;/li&gt;
+  &lt;li&gt;Перегляд детальної інформації&lt;/li&gt;
+  &lt;li&gt;Ознайомлення з датами та місцем проведення&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
 
             <h3>Теорія</h3>
             <ul>
-              <li><code>&lt;ul&gt;</code> — маркірований список, використовується для переліку можливостей або характеристик.</li>
-              <li><code>&lt;ol&gt;</code> — нумерований список, застосовується для відображення послідовності дій.</li>
+              <li><code>&lt;ul&gt;</code> — маркірований список.</li>
+              <li><code>&lt;ol&gt;</code> — нумерований список.</li>
               <li><code>&lt;li&gt;</code> — елемент списку.</li>
-              <li>Атрибут <code>type</code> для <code>&lt;ol&gt;</code> дозволяє змінювати тип нумерації (1, A, a, I, i).</li>
             </ul>
-
-            <p>
-              Списки використовуються у WEB-застосунку «Exhibitum» для структурованого
-              подання функціональних можливостей, вимог та логіки взаємодії користувача з системою.
-            </p>
           </section>
 
           <section id="form" hidden>
@@ -653,44 +625,30 @@
 
             <pre><code>&lt;form action="#" method="post"&gt;
 
-            &lt;label&gt;Ім’я користувача:
-              &lt;input type="text" name="username" placeholder="Введіть ім’я" required&gt;
-            &lt;/label&gt;
+  &lt;label&gt;Ім’я користувача:
+    &lt;input type="text" name="username" placeholder="Введіть ім’я" required&gt;
+  &lt;/label&gt;
 
-            &lt;label&gt;Електронна пошта:
-              &lt;input type="email" name="email" placeholder="email@example.com" required&gt;
-            &lt;/label&gt;
+  &lt;label&gt;Електронна пошта:
+    &lt;input type="email" name="email" placeholder="email@example.com" required&gt;
+  &lt;/label&gt;
 
-            &lt;label&gt;Тема звернення:
-              &lt;select name="topic"&gt;
-                &lt;option value="exhibition"&gt;Питання щодо виставки&lt;/option&gt;
-                &lt;option value="museum"&gt;Інформація про музей&lt;/option&gt;
-                &lt;option value="tickets"&gt;Квитки&lt;/option&gt;
-                &lt;option value="other"&gt;Інше&lt;/option&gt;
-              &lt;/select&gt;
-            &lt;/label&gt;
+  &lt;label&gt;Тема звернення:
+    &lt;select name="topic"&gt;
+      &lt;option value="exhibition"&gt;Питання щодо виставки&lt;/option&gt;
+      &lt;option value="museum"&gt;Інформація про музей&lt;/option&gt;
+      &lt;option value="tickets"&gt;Квитки&lt;/option&gt;
+      &lt;option value="other"&gt;Інше&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;
 
-            &lt;label&gt;Повідомлення:
-              &lt;textarea name="message" rows="4" placeholder="Ваше повідомлення..."&gt;&lt;/textarea&gt;
-            &lt;/label&gt;
+  &lt;label&gt;Повідомлення:
+    &lt;textarea name="message" rows="4" placeholder="Ваше повідомлення..."&gt;&lt;/textarea&gt;
+  &lt;/label&gt;
 
-            &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+  &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
 
-          &lt;/form&gt;</code></pre>
-
-            <h3>Теорія</h3>
-            <ul>
-              <li><code>&lt;form&gt;</code> — контейнер для елементів введення даних користувача.</li>
-              <li><code>&lt;input&gt;</code> — однорядкове поле введення (текст, email тощо).</li>
-              <li><code>&lt;textarea&gt;</code> — багаторядкове поле для введення повідомлення.</li>
-              <li><code>&lt;select&gt;</code> та <code>&lt;option&gt;</code> — елементи вибору зі списку.</li>
-              <li>Атрибут <code>required</code> забезпечує перевірку обовʼязкових полів на рівні браузера.</li>
-            </ul>
-
-            <p>
-              Дана форма використовується у WEB-застосунку «Exhibitum» для організації
-              зворотного звʼязку між користувачами та адміністрацією платформи.
-            </p>
+&lt;/form&gt;</code></pre>
           </section>
 
           <section id="html" hidden>
@@ -698,35 +656,27 @@
 
             <pre><code>&lt;header class="header"&gt;
 
-            &lt;div class="header__logo"&gt;
-              &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
-            &lt;/div&gt;
+  &lt;div class="header__logo"&gt;
+    &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
+  &lt;/div&gt;
 
-            &lt;nav class="nav" aria-label="Навігація"&gt;
-              &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
-              &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
-              &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
-              &lt;a href="article.html"&gt;Статті&lt;/a&gt;
-              &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
-            &lt;/nav&gt;
+  &lt;nav class="nav" aria-label="Навігація"&gt;
+    &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
+    &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
+    &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
+    &lt;a href="article.html"&gt;Статті&lt;/a&gt;
+    &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
+  &lt;/nav&gt;
 
-          &lt;/header&gt;</code></pre>
-
-            <p>
-              Наведений фрагмент HTML-коду демонструє використання семантичних тегів
-              <code>&lt;header&gt;</code> та <code>&lt;nav&gt;</code> у головній частині
-              WEB-застосунку «Exhibitum». Навігаційне меню забезпечує зручний перехід
-              між основними розділами сайту.
-            </p>
+&lt;/header&gt;</code></pre>
           </section>
-
 
           <section id="homePage" hidden>
             <h3>Головна сторінка WEB-застосунку</h3>
-            <p>Нижче наведено скріншот головної сторінки WEB-застосунку, створеного у межах лабораторної роботи.</p>
+            <p>Нижче наведено скріншот головної сторінки WEB-застосунку.</p>
 
-            <img 
-              src="images/homepage2.png" 
+            <img
+              src="images/homepage2.png"
               alt="Головна сторінка WEB-застосунку"
               style="max-width:100%; border:1px solid #333; margin-top:10px;"
             >
@@ -736,53 +686,41 @@
             <h3>Код головної сторінки WEB-застосунку</h3>
 
             <pre><code>&lt;header class="header"&gt;
+              &lt;div class="header__logo"&gt;
+                &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
+              &lt;/div&gt;
 
-            &lt;div class="header__logo"&gt;
-              &lt;img src="images/logo_text2.png" alt="Exhibitum"&gt;
-            &lt;/div&gt;
+              &lt;nav class="nav" aria-label="Навігація"&gt;
+                &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
+                &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
+                &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
+                &lt;a href="article.html"&gt;Статті&lt;/a&gt;
+                &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
+              &lt;/nav&gt;
+            &lt;/header&gt;
 
-            &lt;nav class="nav" aria-label="Навігація"&gt;
-              &lt;a href="index.html"&gt;Виставки&lt;/a&gt;
-              &lt;a href="about.html"&gt;Про проєкт&lt;/a&gt;
-              &lt;a href="tickets.html"&gt;Квитки&lt;/a&gt;
-              &lt;a href="article.html"&gt;Статті&lt;/a&gt;
-              &lt;a href="contacts.html"&gt;Контакти&lt;/a&gt;
-            &lt;/nav&gt;
+            &lt;main class="home"&gt;
+              &lt;section class="hero"&gt;
+                &lt;h1&gt;Актуальні музейні виставки&lt;/h1&gt;
+                &lt;p&gt;Платформа Exhibitum надає інформацію про події в музеях України.&lt;/p&gt;
+              &lt;/section&gt;
 
-          &lt;/header&gt;
+              &lt;section class="exhibitions"&gt;
+                &lt;h2&gt;Виставки&lt;/h2&gt;
+                &lt;!-- картки виставок --&gt;
+              &lt;/section&gt;
+            &lt;/main&gt;
 
-          &lt;main class="home"&gt;
-
-            &lt;section class="hero"&gt;
-              &lt;h1&gt;Актуальні музейні виставки&lt;/h1&gt;
-              &lt;p&gt;
-                Платформа Exhibitum надає інформацію про
-                поточні та майбутні культурні події в музеях України.
-              &lt;/p&gt;
-            &lt;/section&gt;
-
-            &lt;section class="exhibitions"&gt;
-              &lt;h2&gt;Виставки&lt;/h2&gt;
-              &lt;!-- картки виставок --&gt;
-            &lt;/section&gt;
-
-          &lt;/main&gt;
-
-          &lt;footer class="footer"&gt;
-            &lt;p&gt;© Exhibitum, 2025&lt;/p&gt;
-          &lt;/footer&gt;</code></pre>
-
-            <p>
-              Наведений HTML-код демонструє структуру головної сторінки
-              WEB-застосунку «Exhibitum», яка містить семантичні елементи
-              <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
-              <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code> та
-              <code>&lt;footer&gt;</code>.
-              Головна сторінка забезпечує доступ до інформації про виставки
-              та навігацію між розділами сайту.
-            </p>
+            &lt;footer class="footer"&gt;
+              &lt;p&gt;© Exhibitum, 2025&lt;/p&gt;
+            &lt;/footer&gt;</code></pre>
           </section>
-          <section id="lab2" hidden>
+        </div>
+
+        <!-- LAB 2 -->
+        <div class="lab" data-lab="lab2" hidden>
+
+          <section id="lab2meta">
             <h3>Тема ЛР №2</h3>
             <p>
               Стильове оформлення елементів в HTML-документах. Каскадні таблиці стилів.
@@ -798,12 +736,13 @@
 
             <h3>Місце розташування сайту та звіту</h3>
             <ul>
-              <li>Репозиторій WEB-застосунку «Exhibitum»: <em>(вставиш посилання)</em></li>
-              <li>Жива сторінка WEB-застосунку: <em>(вставиш посилання)</em></li>
-              <li>Репозиторій звітного HTML-документа: <em>(вставиш посилання)</em></li>
-              <li>Жива сторінка звіту: <em>(вставиш посилання)</em></li>
+              <li>Репозиторій WEB-застосунку: <a href="https://github.com/saninmv-zpi51/lab1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/lab1</a></li>
+              <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="https://saninmv-zpi51.github.io/lab1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/lab1/</a></li>
+              <li>Репозиторій звіту (appRECORD): <a href="https://github.com/saninmv-zpi51/kpi1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/kpi1</a></li>
+              <li>Жива сторінка звіту: <a href="https://saninmv-zpi51.github.io/kpi1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/kpi1/</a></li>
             </ul>
           </section>
+
           <section id="cssConnect" hidden>
             <h3>Способи підключення стилів</h3>
 
@@ -812,8 +751,8 @@
 
             <h4>2) Внутрішні стилі (приклад)</h4>
             <pre><code>&lt;style&gt;
-            body{ font-family: Arial, sans-serif; }
-          &lt;/style&gt;</code></pre>
+body{ font-family: Arial, sans-serif; }
+&lt;/style&gt;</code></pre>
 
             <h4>3) Інлайн-стиль (приклад)</h4>
             <pre><code>&lt;h1 style="color:#00595C;"&gt;Exhibitum&lt;/h1&gt;</code></pre>
@@ -823,83 +762,85 @@
               оскільки це забезпечує централізоване керування стилями та зручність підтримки.
             </p>
           </section>
+
           <section id="tagSelectors" hidden>
             <h3>Селектори тегу</h3>
 
             <h4>HTML (фрагмент)</h4>
             <pre><code>&lt;body&gt;
-            &lt;header class="header"&gt;...&lt;/header&gt;
-            &lt;main&gt;...&lt;/main&gt;
-          &lt;/body&gt;</code></pre>
+  &lt;header class="header"&gt;...&lt;/header&gt;
+  &lt;main&gt;...&lt;/main&gt;
+&lt;/body&gt;</code></pre>
 
             <h4>CSS (фрагмент з проєкту)</h4>
             <pre><code>body{
-            margin: 0;
-            background: var(--white);
-            color: var(--text);
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          }</code></pre>
+  margin: 0;
+  background: var(--white);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}</code></pre>
 
             <p><em>Скріншот результату (додаси після):</em></p>
             <pre><code>&lt;img src="images/screens/lab2_tagselector.png" alt="Скрін: селектор тегу body"&gt;</code></pre>
           </section>
+
           <section id="classSelectors" hidden>
             <h3>Селектори класу</h3>
 
             <h4>HTML (фрагмент)</h4>
             <pre><code>&lt;header class="header"&gt;
-            &lt;nav class="nav"&gt;
-              &lt;a class="pill is-active" href="about.html"&gt;Про проєкт&lt;/a&gt;
-            &lt;/nav&gt;
-          &lt;/header&gt;</code></pre>
+  &lt;nav class="nav"&gt;
+    &lt;a class="pill is-active" href="about.html"&gt;Про проєкт&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
 
             <h4>CSS (фрагмент з проєкту)</h4>
             <pre><code>.header{
-            padding: 32px;
-            background: var(--teal);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            gap: 24px;
-            align-items: center;
-            flex-wrap: wrap;
-          }
+  padding: 32px;
+  background: var(--teal);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-          .pill{
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: transparent;
-            color: var(--text);
-            text-decoration: none;
-            font-family: "Zen Old Mincho", serif;
-            font-size: 16px;
-            line-height: 16px;
-          }
+.pill{
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 16px;
+}
 
-          .pill.is-active{ background: var(--pill); }</code></pre>
+.pill.is-active{ background: var(--pill); }</code></pre>
 
             <p><em>Скріншот результату (додаси після):</em></p>
             <pre><code>&lt;img src="images/screens/lab2_classselector.png" alt="Скрін: стилізація .header та .pill"&gt;</code></pre>
           </section>
+
           <section id="idSelectors" hidden>
             <h3>Селектори ідентифікаторів</h3>
 
             <h4>HTML (фрагмент)</h4>
             <pre><code>&lt;div class="museum__bar--carousel"&gt;
-            &lt;div id="museumStrip" class="museum-strip"&gt;
-              &lt;img class="museum-strip__logo" src="images/logo-ivan-honchar.webp" alt="..."&gt;
-              ...
-            &lt;/div&gt;
-          &lt;/div&gt;</code></pre>
+  &lt;div id="museumStrip" class="museum-strip"&gt;
+    &lt;img class="museum-strip__logo" src="images/logo-ivan-honchar.webp" alt="..."&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
             <h4>CSS (приклад використання #id)</h4>
             <pre><code>#museumStrip{
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            height: 100%;
-            transition: transform 1.2s ease-in-out;
-            will-change: transform;
-          }</code></pre>
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 100%;
+  transition: transform 1.2s ease-in-out;
+  will-change: transform;
+}</code></pre>
 
             <p>
               Ідентифікатор використовується для звернення до конкретного елемента сторінки.
@@ -909,6 +850,7 @@
             <p><em>Скріншот результату (додаси після):</em></p>
             <pre><code>&lt;img src="images/screens/lab2_idselector.png" alt="Скрін: #museumStrip"&gt;</code></pre>
           </section>
+
           <section id="otherSelectors" hidden>
             <h3>Інші селектори</h3>
 
@@ -917,21 +859,21 @@
 
             <h4>Дочірній селектор (A B)</h4>
             <pre><code>.header__logo img{
-            height: 100%;
-            width: auto;
-            display: block;
-            object-fit: contain;
-          }</code></pre>
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}</code></pre>
 
             <h4>Сусідній селектор (A + B) — приклад</h4>
             <pre><code>h2 + p{
-            margin-top: 6px;
-          }</code></pre>
+  margin-top: 6px;
+}</code></pre>
 
             <h4>Селектор атрибута — приклад</h4>
             <pre><code>a[aria-label]{
-            text-decoration: none;
-          }</code></pre>
+  text-decoration: none;
+}</code></pre>
 
             <p>
               Універсальний селектор застосовується для базового налаштування,
@@ -940,85 +882,81 @@
               селектор атрибута — для точкової стилізації елементів за атрибутами.
             </p>
           </section>
+
           <section id="cssShowcase" hidden>
             <h3>CSS: Шрифти Текст Таблиці Фон Контур Списки CSS Просунутий</h3>
 
             <h4>Шрифти та текст</h4>
             <pre><code>body{
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            color: var(--text);
-          }
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+}
 
-          .footer__text{
-            font-size: 14px;
-            color: rgba(255,255,255,0.80);
-          }</code></pre>
+.footer__text{
+  font-size: 14px;
+  color: rgba(255,255,255,0.80);
+}</code></pre>
 
             <h4>Фон і кольори (палітра через CSS-змінні)</h4>
             <pre><code>:root{
-            --teal: #00595C;
-            --teal-dark: #032F30;
-            --border: #D9D9D9;
-            --pill: #F5F5F5;
-            --text: #1E1E1E;
-            --white: #ffffff;
-          }
+  --teal: #00595C;
+  --teal-dark: #032F30;
+  --border: #D9D9D9;
+  --pill: #F5F5F5;
+  --text: #1E1E1E;
+  --white: #ffffff;
+}
 
-          .header{ background: var(--teal); }
-          .museum{ background: var(--teal-dark); }</code></pre>
+.header{ background: var(--teal); }
+.museum{ background: var(--teal-dark); }</code></pre>
 
             <h4>Відступи та “контури” (border, radius)</h4>
             <pre><code>.btn{
-            border-radius: 8px;
-            padding: 8px 10px;
-            border: 1px solid #767676;
-          }
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid #767676;
+}
 
-          .museum-vertical{
-            border-radius: 14px;
-            overflow: hidden;
-          }</code></pre>
+.museum-vertical{
+  border-radius: 14px;
+  overflow: hidden;
+}</code></pre>
 
             <h4>Списки</h4>
             <pre><code>.about__block ul{
-            padding-left: 20px;
-          }</code></pre>
+  padding-left: 20px;
+}</code></pre>
 
             <h4>CSS “просунутий” (анімація + псевдоелементи)</h4>
             <pre><code>.about-content::before{
-            content:"";
-            display:block;
-            height:80px;
-            background-color:#D9FEFF;
-            background-image:url("images/ornament.png");
-            background-repeat:repeat-x;
-            background-size:contain;
-            opacity:0.5;
-            animation: ornament-drift 40s linear infinite;
-          }
+  content:"";
+  display:block;
+  height:80px;
+  background-color:#D9FEFF;
+  background-image:url("images/ornament.png");
+  background-repeat:repeat-x;
+  background-size:contain;
+  opacity:0.5;
+  animation: ornament-drift 40s linear infinite;
+}
 
-          @keyframes ornament-drift{
-            from{ background-position-x: 0; }
-            to{ background-position-x: 1000px; }
-          }</code></pre>
+@keyframes ornament-drift{
+  from{ background-position-x: 0; }
+  to{ background-position-x: 1000px; }
+}</code></pre>
 
             <h4>Таблиці (для звіту / приклад)</h4>
             <pre><code>table{
-            width: 100%;
-            border-collapse: collapse;
-          }
+  width: 100%;
+  border-collapse: collapse;
+}
 
-          th, td{
-            border: 1px solid #D9D9D9;
-            padding: 8px 10px;
-          }</code></pre>
-
-            <p>
-              У проєкті «Exhibitum» застосовано стилізацію тексту, кольорів та фону,
-              border/radius, списків, а також просунуті можливості CSS (анімації, псевдоелементи,
-              mask-image для логотипу та декоративні ефекти).
-            </p>
+th, td{
+  border: 1px solid #D9D9D9;
+  padding: 8px 10px;
+}</code></pre>
           </section>
+
           <section id="lab2Conclusion" hidden>
             <h3>Висновки до ЛР №2</h3>
             <p>
@@ -1031,17 +969,16 @@
               сторінок проєкту.
             </p>
           </section>
-
         </div>
 
-        <div class="lab" data-lab="lab2" hidden><p>Лабораторна №2 </p></div>
-        <div class="lab" data-lab="lab3" hidden><p>Лабораторна №3 </p></div>
+        <!-- EMPTY FUTURE LABS -->
+        <div class="lab" data-lab="lab3" hidden><p>Лабораторна №3</p></div>
         <div class="lab" data-lab="lab4" hidden><p>Лабораторна №4</p></div>
-        <div class="lab" data-lab="lab5" hidden><p>Лабораторна №5 </p></div>
-        <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6 </p></div>
-        <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7 </p></div>
-        <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8 </p></div>
-        <div class="lab" data-lab="lab9" hidden><p>Лабораторна №9 </p></div>
+        <div class="lab" data-lab="lab5" hidden><p>Лабораторна №5</p></div>
+        <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6</p></div>
+        <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7</p></div>
+        <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8</p></div>
+        <div class="lab" data-lab="lab9" hidden><p>Лабораторна №9</p></div>
 
       </main>
     </div>
@@ -1050,13 +987,58 @@
       © Звітний HTML-документ лабораторних робіт (FIOT-2025)
     </footer>
   </div>
+
   <div class="kyiv-strip" aria-hidden="true"></div>
+
+  <div class="snow-bg" aria-hidden="true">
+    <span class="flake f1"></span><span class="flake f2"></span><span class="flake f3"></span><span class="flake f4"></span>
+    <span class="flake f5"></span><span class="flake f6"></span><span class="flake f7"></span><span class="flake f8"></span>
+    <span class="flake f9"></span><span class="flake f10"></span><span class="flake f11"></span><span class="flake f12"></span>
+    <span class="flake f13"></span><span class="flake f14"></span><span class="flake f15"></span><span class="flake f16"></span>
+    <span class="flake f17"></span><span class="flake f18"></span><span class="flake f19"></span><span class="flake f20"></span>
+  </div>
 
   <script>
     // Tabs: labs
     const tabBar = document.getElementById('labTabs');
     const labs = document.querySelectorAll('.lab');
     const title = document.getElementById('contentTitle');
+
+    const menuLab1 = document.getElementById('leftMenuLab1');
+    const menuLab2 = document.getElementById('leftMenuLab2');
+
+    function getActiveLab(){
+      return [...labs].find(l => !l.hidden);
+    }
+
+    function getActiveMenu(labId){
+      return (labId === 'lab2') ? menuLab2 : menuLab1;
+    }
+
+    function setActiveSection(sectionId){
+      const activeLab = getActiveLab();
+      if(!activeLab) return;
+
+      const activeMenu = getActiveMenu(activeLab.dataset.lab);
+
+      // show/hide sections inside active lab only
+      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
+
+      // active button only inside active menu
+      activeMenu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      const activeBtn = activeMenu.querySelector(`button[data-section="${sectionId}"]`);
+      if(activeBtn) activeBtn.classList.add('is-active');
+    }
+
+    function switchMenus(labId){
+      if(labId === 'lab2'){
+        menuLab1.hidden = true;
+        menuLab2.hidden = false;
+      }else{
+        menuLab1.hidden = false;
+        menuLab2.hidden = true;
+      }
+    }
 
     tabBar.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-lab]');
@@ -1071,52 +1053,26 @@
       const n = labId.replace('lab','');
       title.textContent = `Лабораторна робота №${n}`;
 
-      // при перемиканні лаби — показати перший розділ (meta)
-      setActiveSection('meta');
+      switchMenus(labId);
+
+      // first section per lab
+      if(labId === 'lab2') setActiveSection('lab2meta');
+      else setActiveSection('meta');
     });
 
-    // Left menu: sections
-    const menu = document.getElementById('leftMenu');
-
-    function setActiveSection(sectionId){
-      // тільки всередині активної лаби
-      const activeLab = [...labs].find(l => !l.hidden);
-      if(!activeLab) return;
-
-      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
-
-      menu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
-      const activeBtn = menu.querySelector(`button[data-section="${sectionId}"]`);
-      if(activeBtn) activeBtn.classList.add('is-active');
-    }
-
-    menu.addEventListener('click', (e) => {
+    // menu click for both menus
+    function menuClickHandler(e){
       const btn = e.target.closest('button[data-section]');
       if(!btn) return;
       setActiveSection(btn.dataset.section);
-    });
+    }
+
+    menuLab1.addEventListener('click', menuClickHandler);
+    menuLab2.addEventListener('click', menuClickHandler);
+
+    switchMenus('lab1');
+    setActiveSection('meta');
   </script>
-  <div class="snow-bg" aria-hidden="true">
-  <span class="flake f1"></span>
-  <span class="flake f2"></span>
-  <span class="flake f3"></span>
-  <span class="flake f4"></span>
-  <span class="flake f5"></span>
-  <span class="flake f6"></span>
-  <span class="flake f7"></span>
-  <span class="flake f8"></span>
-  <span class="flake f9"></span>
-  <span class="flake f10"></span>
-  <span class="flake f11"></span>
-  <span class="flake f12"></span>
-  <span class="flake f13"></span>
-  <span class="flake f14"></span>
-  <span class="flake f15"></span>
-  <span class="flake f16"></span>
-  <span class="flake f17"></span>
-  <span class="flake f18"></span>
-  <span class="flake f19"></span>
-  <span class="flake f20"></span>
-</div>
+
 </body>
 </html>
