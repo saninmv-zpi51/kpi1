@@ -441,6 +441,21 @@
           <button class="wide" data-section="cssShowcase">CSS: Шрифти/Текст/Фон/Контур/Списки/Просунутий</button>
           <button class="wide" data-section="lab2Conclusion">Висновки ЛР2</button>
         </div>
+
+        <!-- LAB 4 MENU -->
+        <div class="menu" id="leftMenuLab4" hidden>
+          <button class="is-active wide" data-section="lab4meta">Тема, мета, посилання</button>
+          <button class="wide" data-section="lab4task1">Завдання №1</button>
+          <button class="wide" data-section="lab4task2">Завдання №2</button>
+          <button class="wide" data-section="lab4task3">Завдання №3</button>
+          <button class="wide" data-section="lab4task4">Завдання №4</button>
+          <button class="wide" data-section="lab4task5">Завдання №5</button>
+          <button class="wide" data-section="lab4task6">Завдання №6</button>
+          <button class="wide" data-section="lab4task7">Завдання №7 / Варіант 5</button>
+          <button class="wide" data-section="lab4task8">Завдання №8</button>
+          <button class="wide" data-section="lab4task9">Завдання №9</button>
+          <button class="wide" data-section="lab4Conclusion">Висновки ЛР4</button>
+        </div>
       </aside>
 
       <main aria-label="Місце виведення інформації">
@@ -962,7 +977,244 @@ th, td{
 
         <!-- EMPTY FUTURE LABS -->
         <div class="lab" data-lab="lab3" hidden><p>Лабораторна №3</p></div>
-        <div class="lab" data-lab="lab4" hidden><p>Лабораторна №4</p></div>
+        <div class="lab" data-lab="lab4" hidden>
+
+          <section id="lab4meta">
+            <h3>Лабораторна робота №4</h3>
+
+            <p><strong>Тема:</strong> Основи JavaScript у HTML-документі. Шаблонні рядки. Керування порядком обчислень. Масиви. Методи масивів. Функції.</p>
+
+            <p><strong>Мета:</strong> придбати практичні навички роботи з конструкціями мови JavaScript, масивами та функціями у JS-сценаріях.</p>
+
+            <h3>Посилання</h3>
+            <ul>
+              <li>Репозиторій WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
+              <li>Жива сторінка WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
+              <li>Репозиторій звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
+              <li>Жива сторінка звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
+            </ul>
+          </section>
+
+          <section id="lab4task1" hidden>
+            <h3>Завдання №1</h3>
+            <p><strong>Умова:</strong> Зберегти введене значення за допомогою prompt() у змінну value. Вивести значення у Console, використовуючи шаблонний рядок. Перевірити: значення від’ємне, додатнє чи дорівнює нулю. Відповідь вивести через alert().</p>
+
+            <pre><code>const value = prompt("Введіть число:");
+        const number = Number(value);
+
+        console.log(`Введене значення: ${value}`);
+
+        if (value === null || value.trim() === "") {
+          alert("Ви нічого не ввели");
+        } else if (Number.isNaN(number)) {
+          alert("Це не число");
+        } else if (number > 0) {
+          alert("Число додатнє");
+        } else if (number < 0) {
+          alert("Число від’ємне");
+        } else {
+          alert("Число дорівнює нулю");
+        }</code></pre>
+          </section>
+
+          <section id="lab4task2" hidden>
+            <h3>Завдання №2</h3>
+            <p><strong>Умова:</strong> Змінна number може набувати значень '1', '2', '3' або '4'. Через switch-case визначити пору року.</p>
+
+            <pre><code>const number = prompt("Введіть число від 1 до 4:");
+        let result;
+
+        switch (number) {
+          case "1":
+            result = "зима";
+            break;
+          case "2":
+            result = "весна";
+            break;
+          case "3":
+            result = "літо";
+            break;
+          case "4":
+            result = "осінь";
+            break;
+          default:
+            result = "Невірне значення";
+        }
+
+        console.log(`Результат: ${result}`);</code></pre>
+          </section>
+
+          <section id="lab4task3" hidden>
+            <h3>Завдання №3</h3>
+            <p><strong>Умова:</strong> Є Admin та User з відповідними паролями. Запитати логін і пароль, перевірити користувача та вивести результат.</p>
+
+            <pre><code>const adminLogin = "Admin";
+        const adminPassword = "admin123";
+
+        const userLogin = "User";
+        const userPassword = "user123";
+
+        const login = prompt("Введіть логін:");
+
+        console.log(`Введений логін: ${login}`);
+
+        if (login === null || login.trim() === "") {
+          alert("Cancelled");
+        } else if (login === adminLogin) {
+          const password = prompt("Введіть пароль:");
+
+          if (password === adminPassword) {
+            alert("Hello, Admin");
+          } else {
+            alert("Wrong password");
+          }
+        } else if (login === userLogin) {
+          const password = prompt("Введіть пароль:");
+
+          if (password === userPassword) {
+            alert("Hello, User");
+          } else {
+            alert("Wrong password");
+          }
+        } else {
+          alert("I don't know you");
+        }</code></pre>
+          </section>
+
+          <section id="lab4task4" hidden>
+            <h3>Завдання №4</h3>
+            <p><strong>Умова:</strong> Оголосити функцію makeTransaction(quantity, pricePerDroid), яка повертає повідомлення про купівлю ремонтних дроїдів.</p>
+
+            <pre><code>function makeTransaction(quantity, pricePerDroid) {
+          const totalPrice = quantity * pricePerDroid;
+          return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+        }
+
+        console.log(makeTransaction(5, 3000));
+        console.log(makeTransaction(3, 1000));
+        console.log(makeTransaction(10, 500));</code></pre>
+          </section>
+
+          <section id="lab4task5" hidden>
+            <h3>Завдання №5</h3>
+            <p><strong>Умова:</strong> Функція checkForSpam(message) перевіряє рядок на слова spam і sale та повертає true або false.</p>
+
+            <pre><code>function checkForSpam(message) {
+          const normalizedMessage = message.toLowerCase();
+          return normalizedMessage.includes("spam") || normalizedMessage.includes("sale");
+        }
+
+        console.log(checkForSpam("Latest technology news"));
+        console.log(checkForSpam("JavaScript weekly newsletter"));
+        console.log(checkForSpam("Get best sale offers now!"));
+        console.log(checkForSpam("This is SPAM message"));</code></pre>
+          </section>
+
+          <section id="lab4task6" hidden>
+            <h3>Завдання №6</h3>
+            <p><strong>Умова:</strong> Написати функцію filterArray(numbers, value), яка повертає новий масив чисел, більших за value.</p>
+
+            <pre><code>function filterArray(numbers, value) {
+          const filteredNumbers = [];
+
+          for (const number of numbers) {
+            if (number > value) {
+              filteredNumbers.push(number);
+            }
+          }
+
+          return filteredNumbers;
+        }
+
+        console.log(filterArray([1, 2, 3, 4, 5], 3));
+        console.log(filterArray([10, 15, 20, 25], 17));
+        console.log(filterArray([5, 8, 12, 4], 6));</code></pre>
+          </section>
+
+          <section id="lab4task7" hidden>
+            <h3>Завдання №7 / Варіант 5</h3>
+            <p><strong>Умова:</strong> Створити одновимірний масив, кількість елементів якого задана користувачем. Визначити максимальне та мінімальне значення серед елементів із парними та непарними номерами. Упорядкувати масив у порядку зменшення методом вибору.</p>
+
+            <pre><code>function createArray(size) {
+          const array = [];
+
+          for (let i = 0; i < size; i++) {
+            array.push(Number(prompt(`Введіть елемент ${i + 1}:`)));
+          }
+
+          return array;
+        }
+
+        function findMinMaxByPosition(array) {
+          const evenPositions = [];
+          const oddPositions = [];
+
+          for (let i = 0; i < array.length; i++) {
+            if ((i + 1) % 2 === 0) {
+              evenPositions.push(array[i]);
+            } else {
+              oddPositions.push(array[i]);
+            }
+          }
+
+          return {
+            evenMin: Math.min(...evenPositions),
+            evenMax: Math.max(...evenPositions),
+            oddMin: Math.min(...oddPositions),
+            oddMax: Math.max(...oddPositions)
+          };
+        }
+
+        function selectionSortDescending(array) {
+          const sortedArray = [...array];
+
+          for (let i = 0; i < sortedArray.length - 1; i++) {
+            let maxIndex = i;
+
+            for (let j = i + 1; j < sortedArray.length; j++) {
+              if (sortedArray[j] > sortedArray[maxIndex]) {
+                maxIndex = j;
+              }
+            }
+
+            const temp = sortedArray[i];
+            sortedArray[i] = sortedArray[maxIndex];
+            sortedArray[maxIndex] = temp;
+          }
+
+          return sortedArray;
+        }
+
+        const size = Number(prompt("Введіть кількість елементів масиву:"));
+        const array = createArray(size);
+        const result = findMinMaxByPosition(array);
+        const sortedArray = selectionSortDescending(array);
+
+        console.log("Вхідний масив:", array);
+        console.log("Мінімум/максимум:", result);
+        console.log("Відсортований масив за зменшенням:", sortedArray);</code></pre>
+          </section>
+
+          <section id="lab4task8" hidden>
+            <h3>Завдання №8</h3>
+            <p>Буде додано після уточнення умови з методички.</p>
+          </section>
+
+          <section id="lab4task9" hidden>
+            <h3>Завдання №9</h3>
+            <p>Буде додано після уточнення умови з методички.</p>
+          </section>
+
+          <section id="lab4Conclusion" hidden>
+            <h3>Висновки до ЛР №4</h3>
+            <p>
+              У ході лабораторної роботи №4 було набуто практичних навичок роботи з основними конструкціями JavaScript:
+              змінними, умовними операторами, switch-case, функціями, масивами, циклами та методами обробки даних.
+              Також було реалізовано взаємодію з користувачем за допомогою prompt(), alert() та console.log().
+            </p>
+          </section>
+
+        </div>
         <div class="lab" data-lab="lab5" hidden><p>Лабораторна №5</p></div>
         <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6</p></div>
         <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7</p></div>
@@ -994,7 +1246,14 @@ th, td{
 
   const menus = {
     lab1: document.getElementById('leftMenuLab1'),
-    lab2: document.getElementById('leftMenuLab2')
+    lab2: document.getElementById('leftMenuLab2'),
+    lab4: document.getElementById('leftMenuLab4')
+  };
+
+  const firstSections = {
+    lab1: 'meta',
+    lab2: 'lab2meta',
+    lab4: 'lab4meta'
   };
 
   function showLab(labId) {
@@ -1013,18 +1272,14 @@ th, td{
     const n = labId.replace('lab', '');
     title.textContent = `Лабораторна робота №${n}`;
 
-    if (labId === 'lab2') {
-      showSection('lab2', 'lab2meta');
-    } else {
-      showSection('lab1', 'meta');
-    }
+    showSection(labId, firstSections[labId] || '');
   }
 
   function showSection(labId, sectionId) {
     const lab = document.querySelector(`.lab[data-lab="${labId}"]`);
     const menu = menus[labId];
 
-    if (!lab) return;
+    if (!lab || !sectionId) return;
 
     lab.querySelectorAll('section').forEach(section => {
       section.hidden = section.id !== sectionId;
@@ -1048,7 +1303,11 @@ th, td{
   document.querySelectorAll('.menu button[data-section]').forEach(btn => {
     btn.addEventListener('click', () => {
       const menu = btn.closest('.menu');
-      const labId = menu.id === 'leftMenuLab2' ? 'lab2' : 'lab1';
+
+      let labId = 'lab1';
+      if (menu.id === 'leftMenuLab2') labId = 'lab2';
+      if (menu.id === 'leftMenuLab4') labId = 'lab4';
+
       showSection(labId, btn.dataset.section);
     });
   });
