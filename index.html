@@ -988,80 +988,73 @@ th, td{
   </div>
 
   <script>
-    // Tabs: labs
-    const tabBar = document.getElementById('labTabs');
-    const labs = document.querySelectorAll('.lab');
-    const title = document.getElementById('contentTitle');
+  const tabButtons = document.querySelectorAll('#labTabs button');
+  const labs = document.querySelectorAll('.lab');
+  const title = document.getElementById('contentTitle');
 
-    const menuLab1 = document.getElementById('leftMenuLab1');
-    const menuLab2 = document.getElementById('leftMenuLab2');
+  const menus = {
+    lab1: document.getElementById('leftMenuLab1'),
+    lab2: document.getElementById('leftMenuLab2')
+  };
 
-    function getActiveLab(){
-      return [...labs].find(l => !l.hidden);
-    }
-
-    function getActiveMenu(labId){
-      return (labId === 'lab2') ? menuLab2 : menuLab1;
-    }
-
-    function setActiveSection(sectionId){
-      const activeLab = getActiveLab();
-      if(!activeLab) return;
-
-      const activeMenu = getActiveMenu(activeLab.dataset.lab);
-
-      // show/hide sections inside active lab only
-      activeLab.querySelectorAll('section').forEach(s => s.hidden = (s.id !== sectionId));
-
-      // active button only inside active menu
-      activeMenu.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
-      const activeBtn = activeMenu.querySelector(`button[data-section="${sectionId}"]`);
-      if(activeBtn) activeBtn.classList.add('is-active');
-    }
-
-    function switchMenus(labId){
-      if(labId === 'lab2'){
-        menuLab1.hidden = true;
-        menuLab2.hidden = false;
-      }else{
-        menuLab1.hidden = false;
-        menuLab2.hidden = true;
-      }
-    }
-
-    tabBar.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-lab]');
-      if(!btn) return;
-
-      tabBar.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      const labId = btn.dataset.lab;
-      labs.forEach(l => l.hidden = (l.dataset.lab !== labId));
-
-      const n = labId.replace('lab','');
-      title.textContent = `Лабораторна робота №${n}`;
-
-      switchMenus(labId);
-
-      // first section per lab
-      if(labId === 'lab2') setActiveSection('lab2meta');
-      else setActiveSection('meta');
+  function showLab(labId) {
+    labs.forEach(lab => {
+      lab.hidden = lab.dataset.lab !== labId;
     });
 
-    // menu click for both menus
-    function menuClickHandler(e){
-      const btn = e.target.closest('button[data-section]');
-      if(!btn) return;
-      setActiveSection(btn.dataset.section);
+    Object.values(menus).forEach(menu => {
+      if (menu) menu.hidden = true;
+    });
+
+    if (menus[labId]) {
+      menus[labId].hidden = false;
     }
 
-    menuLab1.addEventListener('click', menuClickHandler);
-    menuLab2.addEventListener('click', menuClickHandler);
+    const n = labId.replace('lab', '');
+    title.textContent = `Лабораторна робота №${n}`;
 
-    switchMenus('lab1');
-    setActiveSection('meta');
-  </script>
+    if (labId === 'lab2') {
+      showSection('lab2', 'lab2meta');
+    } else {
+      showSection('lab1', 'meta');
+    }
+  }
+
+  function showSection(labId, sectionId) {
+    const lab = document.querySelector(`.lab[data-lab="${labId}"]`);
+    const menu = menus[labId];
+
+    if (!lab) return;
+
+    lab.querySelectorAll('section').forEach(section => {
+      section.hidden = section.id !== sectionId;
+    });
+
+    if (menu) {
+      menu.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.section === sectionId);
+      });
+    }
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      showLab(btn.dataset.lab);
+    });
+  });
+
+  document.querySelectorAll('.menu button[data-section]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const menu = btn.closest('.menu');
+      const labId = menu.id === 'leftMenuLab2' ? 'lab2' : 'lab1';
+      showSection(labId, btn.dataset.section);
+    });
+  });
+
+  showLab('lab1');
+</script>
 
 </body>
 </html>
