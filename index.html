@@ -467,6 +467,19 @@
           <button class="wide" data-section="lab5task10">Завдання №10</button>
           <button class="wide" data-section="lab5Conclusion">Висновки ЛР5</button>
         </div>
+        <!-- LAB 6 MENU -->
+        <div class="menu" id="leftMenuLab6" hidden>
+          <button class="is-active wide" data-section="lab6meta">Тема, мета, посилання</button>
+          <button class="wide" data-section="lab6Delegation">Делегування подій у WEB-застосунку</button>
+          <button class="wide" data-section="lab6task1">Завдання №1</button>
+          <button class="wide" data-section="lab6task3">Завдання №3</button>
+          <button class="wide" data-section="lab6task5">Завдання №5</button>
+          <button class="wide" data-section="lab6task7">Завдання №7</button>
+          <button class="wide" data-section="lab6task8">Завдання №8</button>
+          <button class="wide" data-section="lab6task9">Завдання №9</button>
+          <button class="wide" data-section="lab6task10">Завдання №10</button>
+          <button class="wide" data-section="lab6Conclusion">Висновки ЛР6</button>
+        </div>
       </aside>
 
       <main aria-label="Місце виведення інформації">
@@ -1366,209 +1379,512 @@ th, td{
         </div>
         <div class="lab" data-lab="lab5" hidden>
 
-  <section id="lab5meta">
-    <h3>Лабораторна робота №5</h3>
+      <section id="lab5meta">
+        <h3>Лабораторна робота №5</h3>
 
-    <p><strong>Тема:</strong> Об'єкт. Методи об'єкта. Масив об'єктів. Деструктуризація об'єктів. Callback. Стрілочні функції. Перебираючі методи масиву.</p>
+        <p><strong>Тема:</strong> Об'єкт. Методи об'єкта. Масив об'єктів. Деструктуризація об'єктів. Callback. Стрілочні функції. Перебираючі методи масиву.</p>
 
-    <p><strong>Мета:</strong> придбати практичні навички роботи з об'єктами, методами об'єкта, callback-функціями, стрілочними функціями та перебираючими методами масивів.</p>
+        <p><strong>Мета:</strong> придбати практичні навички роботи з об'єктами, методами об'єкта, callback-функціями, стрілочними функціями та перебираючими методами масивів.</p>
 
-    <h3>Посилання</h3>
-    <ul>
-      <li>Репозиторій WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
-      <li>Жива сторінка WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
-      <li>Репозиторій звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
-      <li>Жива сторінка звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
-    </ul>
-  </section>
-
-  <section id="lab5task1" hidden>
-    <h3>Завдання №1</h3>
-    <p><strong>Умова:</strong> Написати функцію createProduct(obj, callback), яка створює об'єкт товару з унікальним id та викликає callback.</p>
-
-    <pre><code>function createProduct(obj, callback) {
-      const product = {
-        id: Date.now(),
-        ...obj,
-      };
-
-      callback(product);
-    }
-
-    function logProduct(product) {
-      console.log("Продукт:", product);
-    }
-
-    function logTotalPrice(product) {
-      const totalPrice = product.price * product.quantity;
-      console.log(`Загальна вартість: ${totalPrice}`);
-    }
-
-    createProduct(
-      { name: "Apple", price: 200, quantity: 3 },
-      logProduct
-    );
-
-    createProduct(
-      { name: "Orange", price: 300, quantity: 2 },
-      logTotalPrice
-    );</code></pre>
+        <h3>Посилання</h3>
+        <ul>
+          <li>Репозиторій WEB-застосунку: <a href="https://github.com/saninmv-zpi51/lab1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/lab1</a></li>
+          <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="https://saninmv-zpi51.github.io/lab1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/lab1/</a></li>
+          <li>Репозиторій звіту (appRECORD): <a href="https://github.com/saninmv-zpi51/kpi1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/kpi1</a></li>
+          <li>Жива сторінка звіту: <a href="https://saninmv-zpi51.github.io/kpi1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/kpi1/</a></li>
+        </ul>
       </section>
 
-      <section id="lab5task3" hidden>
-        <h3>Завдання №3</h3>
-        <p><strong>Умова:</strong> З об'єкта medicines отримати масив назв препаратів, прибрати прострочені медикаменти та відсортувати їх у хронологічному порядку.</p>
+      <section id="lab5task1" hidden>
+        <h3>Завдання №1</h3>
+        <p><strong>Умова:</strong> Написати функцію createProduct(obj, callback), яка створює об'єкт товару з унікальним id та викликає callback.</p>
 
-    <pre><code>const medicines = {
-      Агалгін: new Date("2022-05-01"),
-      Ношпа: new Date("2025-07-02"),
-      Альфахолін: new Date("2024-12-21"),
-      Аспірин: new Date("2022-08-15"),
-      Аспаркам: new Date("2024-04-18"),
-    };
+        <pre><code>function createProduct(obj, callback) {
+          const product = {
+            id: Date.now(),
+            ...obj,
+          };
 
-    const currentDate = new Date();
-
-    const validMedicines = Object.entries(medicines)
-      .filter(([name, date]) =&gt; date &gt; currentDate)
-      .sort((a, b) =&gt; a[1] - b[1])
-      .map(([name]) =&gt; name);
-
-    console.log(validMedicines);</code></pre>
-      </section>
-
-      <section id="lab5task5" hidden>
-        <h3>Завдання №5</h3>
-        <p><strong>Умова:</strong> Зробити знижку 20% на всі фрукти у масиві та надати id кожному продукту.</p>
-
-    <pre><code>const fruits = [
-      { name: "apple", price: 200 },
-      { name: "orange", price: 300 },
-      { name: "grapes", price: 750 },
-    ];
-
-    const discountedFruits = fruits.map((fruit, index) =&gt; ({
-      id: index + 1,
-      name: fruit.name,
-      price: fruit.price * 0.8,
-    }));
-
-    console.log(discountedFruits);</code></pre>
-      </section>
-
-      <section id="lab5task7" hidden>
-        <h3>Завдання №7</h3>
-        <p><strong>Умова:</strong> Написати клас Client з приватними властивостями #login та #email, доступ до яких здійснюється через getter та setter.</p>
-
-    <pre><code>class Client {
-      #login;
-      #email;
-
-      constructor(login, email) {
-        this.#login = login;
-        this.#email = email;
-      }
-
-      get login() {
-        return this.#login;
-      }
-
-      set login(newLogin) {
-        this.#login = newLogin;
-      }
-
-      get email() {
-        return this.#email;
-      }
-
-      set email(newEmail) {
-        this.#email = newEmail;
-      }
-    }
-
-    const client = new Client("mariia", "mariia@example.com");
-
-    console.log(client.login);
-    console.log(client.email);
-
-    client.login = "saninmariia";
-    client.email = "saninmariia@example.com";
-
-    console.log(client.login);
-    console.log(client.email);</code></pre>
-      </section>
-
-      <section id="lab5task9" hidden>
-        <h3>Завдання №9</h3>
-        <p><strong>Умова:</strong> Повернути об'єкт, у якому вказано кількість тегів.</p>
-
-    <pre><code>const tweets = [
-      { id: "000", likes: 5, tags: ["js", "nodejs"] },
-      { id: "001", likes: 2, tags: ["html", "css"] },
-      { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
-      { id: "003", likes: 8, tags: ["css", "react"] },
-      { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
-    ];
-
-    const tagCount = tweets
-      .flatMap(tweet =&gt; tweet.tags)
-      .reduce((acc, tag) =&gt; {
-        acc[tag] = (acc[tag] || 0) + 1;
-        return acc;
-      }, {});
-
-    console.log(tagCount);</code></pre>
-      </section>
-
-      <section id="lab5task10" hidden>
-        <h3>Завдання №10</h3>
-        <p><strong>Умова:</strong> Написати функцію checkBrackets(str), яка перевіряє правильність закриття дужок (), {}, [].</p>
-
-    <pre><code>function checkBrackets(str) {
-      const stack = [];
-      const brackets = {
-        ")": "(",
-        "}": "{",
-        "]": "[",
-      };
-
-      for (const char of str) {
-        if (char === "(" || char === "{" || char === "[") {
-          stack.push(char);
+          callback(product);
         }
 
-        if (char === ")" || char === "}" || char === "]") {
-          if (stack.pop() !== brackets[char]) {
-            return false;
+        function logProduct(product) {
+          console.log("Продукт:", product);
+        }
+
+        function logTotalPrice(product) {
+          const totalPrice = product.price * product.quantity;
+          console.log(`Загальна вартість: ${totalPrice}`);
+        }
+
+        createProduct(
+          { name: "Apple", price: 200, quantity: 3 },
+          logProduct
+        );
+
+        createProduct(
+          { name: "Orange", price: 300, quantity: 2 },
+          logTotalPrice
+        );</code></pre>
+          </section>
+
+          <section id="lab5task3" hidden>
+            <h3>Завдання №3</h3>
+            <p><strong>Умова:</strong> З об'єкта medicines отримати масив назв препаратів, прибрати прострочені медикаменти та відсортувати їх у хронологічному порядку.</p>
+
+        <pre><code>const medicines = {
+          Агалгін: new Date("2022-05-01"),
+          Ношпа: new Date("2025-07-02"),
+          Альфахолін: new Date("2024-12-21"),
+          Аспірин: new Date("2022-08-15"),
+          Аспаркам: new Date("2024-04-18"),
+        };
+
+        const currentDate = new Date();
+
+        const validMedicines = Object.entries(medicines)
+          .filter(([name, date]) =&gt; date &gt; currentDate)
+          .sort((a, b) =&gt; a[1] - b[1])
+          .map(([name]) =&gt; name);
+
+        console.log(validMedicines);</code></pre>
+          </section>
+
+          <section id="lab5task5" hidden>
+            <h3>Завдання №5</h3>
+            <p><strong>Умова:</strong> Зробити знижку 20% на всі фрукти у масиві та надати id кожному продукту.</p>
+
+        <pre><code>const fruits = [
+          { name: "apple", price: 200 },
+          { name: "orange", price: 300 },
+          { name: "grapes", price: 750 },
+        ];
+
+        const discountedFruits = fruits.map((fruit, index) =&gt; ({
+          id: index + 1,
+          name: fruit.name,
+          price: fruit.price * 0.8,
+        }));
+
+        console.log(discountedFruits);</code></pre>
+          </section>
+
+          <section id="lab5task7" hidden>
+            <h3>Завдання №7</h3>
+            <p><strong>Умова:</strong> Написати клас Client з приватними властивостями #login та #email, доступ до яких здійснюється через getter та setter.</p>
+
+        <pre><code>class Client {
+          #login;
+          #email;
+
+          constructor(login, email) {
+            this.#login = login;
+            this.#email = email;
+          }
+
+          get login() {
+            return this.#login;
+          }
+
+          set login(newLogin) {
+            this.#login = newLogin;
+          }
+
+          get email() {
+            return this.#email;
+          }
+
+          set email(newEmail) {
+            this.#email = newEmail;
           }
         }
-      }
 
-      return stack.length === 0;
-    }
+        const client = new Client("mariia", "mariia@example.com");
 
-    console.log(checkBrackets("function test() { return [1, 2, 3]; }"));
-    console.log(checkBrackets("function test( { return [1, 2, 3]; }"));</code></pre>
+        console.log(client.login);
+        console.log(client.email);
+
+        client.login = "saninmariia";
+        client.email = "saninmariia@example.com";
+
+        console.log(client.login);
+        console.log(client.email);</code></pre>
+          </section>
+
+          <section id="lab5task9" hidden>
+            <h3>Завдання №9</h3>
+            <p><strong>Умова:</strong> Повернути об'єкт, у якому вказано кількість тегів.</p>
+
+        <pre><code>const tweets = [
+          { id: "000", likes: 5, tags: ["js", "nodejs"] },
+          { id: "001", likes: 2, tags: ["html", "css"] },
+          { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+          { id: "003", likes: 8, tags: ["css", "react"] },
+          { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+        ];
+
+        const tagCount = tweets
+          .flatMap(tweet =&gt; tweet.tags)
+          .reduce((acc, tag) =&gt; {
+            acc[tag] = (acc[tag] || 0) + 1;
+            return acc;
+          }, {});
+
+        console.log(tagCount);</code></pre>
+          </section>
+
+          <section id="lab5task10" hidden>
+            <h3>Завдання №10</h3>
+            <p><strong>Умова:</strong> Написати функцію checkBrackets(str), яка перевіряє правильність закриття дужок (), {}, [].</p>
+
+        <pre><code>function checkBrackets(str) {
+          const stack = [];
+          const brackets = {
+            ")": "(",
+            "}": "{",
+            "]": "[",
+          };
+
+          for (const char of str) {
+            if (char === "(" || char === "{" || char === "[") {
+              stack.push(char);
+            }
+
+            if (char === ")" || char === "}" || char === "]") {
+              if (stack.pop() !== brackets[char]) {
+                return false;
+              }
+            }
+          }
+
+          return stack.length === 0;
+        }
+
+        console.log(checkBrackets("function test() { return [1, 2, 3]; }"));
+        console.log(checkBrackets("function test( { return [1, 2, 3]; }"));</code></pre>
+          </section>
+
+          <section id="lab5Conclusion" hidden>
+            <h3>Висновки до ЛР №5</h3>
+            <p>
+              У ході лабораторної роботи №5 було набуто практичних навичок роботи з об'єктами,
+              масивами об'єктів, callback-функціями, стрілочними функціями, класами,
+              приватними властивостями, getter/setter та перебираючими методами масивів:
+              map(), filter(), sort(), reduce() і flatMap().
+            </p>
+          </section>
+
+    </div>
+        <div class="lab" data-lab="lab6" hidden>
+
+      <section id="lab6meta">
+        <h3>Лабораторна робота №6</h3>
+
+        <p><strong>Тема:</strong> Прототипи. Класи. Об'єктна модель документа DOM. Події. Об'єкт події. Делегування подій.</p>
+
+        <p><strong>Мета:</strong> придбати практичні навички роботи з DOM, подіями, об'єктом події та делегуванням подій.</p>
+
+        <h3>Посилання</h3>
+        <ul>
+          <li>Репозиторій WEB-застосунку: <a href="https://github.com/saninmv-zpi51/lab1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/lab1</a></li>
+          <li>Жива сторінка WEB-застосунку (GitHub Pages): <a href="https://saninmv-zpi51.github.io/lab1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/lab1/</a></li>
+          <li>Репозиторій звіту (appRECORD): <a href="https://github.com/saninmv-zpi51/kpi1" target="_blank" rel="noreferrer">https://github.com/saninmv-zpi51/kpi1</a></li>
+          <li>Жива сторінка звіту: <a href="https://saninmv-zpi51.github.io/kpi1/" target="_blank" rel="noreferrer">https://saninmv-zpi51.github.io/kpi1/</a></li>
+        </ul>
       </section>
 
-      <section id="lab5Conclusion" hidden>
-        <h3>Висновки до ЛР №5</h3>
+      <section id="lab6Delegation" hidden>
+        <h3>Делегування подій у власному WEB-застосунку</h3>
+
+        <p><strong>Умова:</strong> У власному WEB-застосунку створити програмний код делегування подій: при виборі елемента в колекції елементів повинне відкритись модальне вікно, яке містить опис цього елемента.</p>
+
         <p>
-          У ході лабораторної роботи №5 було набуто практичних навичок роботи з об'єктами,
-          масивами об'єктів, callback-функціями, стрілочними функціями, класами,
-          приватними властивостями, getter/setter та перебираючими методами масивів:
-          map(), filter(), sort(), reduce() і flatMap().
+          У WEB-застосунку «Exhibitum» делегування подій можна реалізувати для колекції зображень каруселі на головній сторінці.
+          При кліку на зображення виставки відкривається модальне вікно з описом вибраної виставки.
         </p>
-      </section>
 
-    </div>
-        <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6</p></div>
-        <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7</p></div>
-        <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8</p></div>
-        <div class="lab" data-lab="lab9" hidden><p>Лабораторна №9</p></div>
+      <pre><code>const carouselTrack = document.querySelector(".carousel-track");
 
-      </main>
-    </div>
+      const exhibitionDescriptions = {
+        "Виставка 1": "Опис першої музейної виставки.",
+        "Виставка 2": "Опис другої музейної виставки.",
+        "Виставка 3": "Опис третьої музейної виставки.",
+        "Виставка 4": "Опис четвертої музейної виставки.",
+        "Виставка 5": "Опис п'ятої музейної виставки.",
+        "Виставка 6": "Опис шостої музейної виставки."
+      };
+
+      carouselTrack.addEventListener("click", function(event) {
+        if (event.target.tagName !== "IMG") {
+          return;
+        }
+
+        const title = event.target.alt;
+        const description = exhibitionDescriptions[title] || "Опис виставки відсутній.";
+
+        alert(`${title}\n\n${description}`);
+      });</code></pre>
+        </section>
+
+        <section id="lab6task1" hidden>
+          <h3>Завдання №1</h3>
+          <p><strong>Умова:</strong> Створити HTML-розмітку з текстом, кнопкою та полем введення. Натискання на кнопку "SHOW ME" має виводити значення поля введення у консоль.</p>
+
+        <pre><code>&lt;p&gt;Введіть текст:&lt;/p&gt;
+        &lt;input id="task1Input" type="text" placeholder="Ваш текст"&gt;
+        &lt;button id="task1Button"&gt;SHOW ME&lt;/button&gt;
+
+        &lt;script&gt;
+          const input = document.querySelector("#task1Input");
+          const button = document.querySelector("#task1Button");
+
+          button.addEventListener("click", () =&gt; {
+            console.log(input.value);
+          });
+        &lt;/script&gt;</code></pre>
+          </section>
+
+          <section id="lab6task3" hidden>
+            <h3>Завдання №3</h3>
+            <p><strong>Умова:</strong> Кнопка "Приховати" ховає текст, замінюючи його зірочками, і змінює назву кнопки на "Розкрити". При повторному натисканні текст знову стає доступним.</p>
+
+        <pre><code>&lt;p&gt;Пароль:&lt;/p&gt;
+        &lt;input id="passwordInput" type="text" value="mySecretPassword"&gt;
+        &lt;button id="togglePassword"&gt;Приховати&lt;/button&gt;
+
+        &lt;script&gt;
+          const passwordInput = document.querySelector("#passwordInput");
+          const togglePassword = document.querySelector("#togglePassword");
+
+          togglePassword.addEventListener("click", () =&gt; {
+            if (passwordInput.type === "text") {
+              passwordInput.type = "password";
+              togglePassword.textContent = "Розкрити";
+            } else {
+              passwordInput.type = "text";
+              togglePassword.textContent = "Приховати";
+            }
+          });
+        &lt;/script&gt;</code></pre>
+          </section>
+
+          <section id="lab6task5" hidden>
+            <h3>Завдання №5</h3>
+            <p><strong>Умова:</strong> Додати слухач кліку на window і визначити, чи клікнув користувач у div з id="place". Якщо клік був у прямокутнику — у консоль вивести true, інакше false.</p>
+
+        <pre><code>&lt;p class="taskTitle"&gt;Клікни на зелений прямокутник&lt;/p&gt;
+        &lt;div id="place"&gt;&lt;/div&gt;
+
+        &lt;script&gt;
+          const place = document.querySelector("#place");
+
+          window.addEventListener("click", (event) =&gt; {
+            console.log(event.target === place);
+          });
+        &lt;/script&gt;</code></pre>
+
+        <pre><code>#place {
+          width: 200px;
+          height: 100px;
+          background-color: green;
+        }</code></pre>
+          </section>
+
+          <section id="lab6task7" hidden>
+            <h3>Завдання №7</h3>
+            <p><strong>Умова:</strong> Порахувати кількість категорій у ul#categories та для кожної категорії вивести назву і кількість елементів.</p>
+
+        <pre><code>&lt;ul id="categories"&gt;
+          &lt;li class="item"&gt;
+            &lt;h2&gt;Animals&lt;/h2&gt;
+            &lt;ul&gt;
+              &lt;li&gt;Cat&lt;/li&gt;
+              &lt;li&gt;Hamster&lt;/li&gt;
+              &lt;li&gt;Horse&lt;/li&gt;
+              &lt;li&gt;Parrot&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li class="item"&gt;
+            &lt;h2&gt;Products&lt;/h2&gt;
+            &lt;ul&gt;
+              &lt;li&gt;Bread&lt;/li&gt;
+              &lt;li&gt;Parsley&lt;/li&gt;
+              &lt;li&gt;Cheese&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li class="item"&gt;
+            &lt;h2&gt;Technologies&lt;/h2&gt;
+            &lt;ul&gt;
+              &lt;li&gt;HTML&lt;/li&gt;
+              &lt;li&gt;CSS&lt;/li&gt;
+              &lt;li&gt;JavaScript&lt;/li&gt;
+              &lt;li&gt;React&lt;/li&gt;
+              &lt;li&gt;Node.js&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;script&gt;
+          const categories = document.querySelectorAll("#categories .item");
+
+          console.log(`Number of categories: ${categories.length}`);
+
+          categories.forEach(category =&gt; {
+            const title = category.querySelector("h2").textContent;
+            const elements = category.querySelectorAll("ul li").length;
+
+            console.log(`Category: ${title}`);
+            console.log(`Elements: ${elements}`);
+          });
+        &lt;/script&gt;</code></pre>
+          </section>
+
+          <section id="lab6task8" hidden>
+            <h3>Завдання №8</h3>
+            <p><strong>Умова:</strong> Написати скрипт управління формою логіна. При submit перевірити заповнення полів, вивести об'єкт з email та password у консоль і очистити форму.</p>
+
+        <pre><code>&lt;form class="login-form"&gt;
+          &lt;label&gt;
+            Email
+            &lt;input type="email" name="email" /&gt;
+          &lt;/label&gt;
+          &lt;label&gt;
+            Password
+            &lt;input type="password" name="password" /&gt;
+          &lt;/label&gt;
+          &lt;button type="submit"&gt;Log in&lt;/button&gt;
+        &lt;/form&gt;
+
+        &lt;script&gt;
+          const form = document.querySelector(".login-form");
+
+          form.addEventListener("submit", (event) =&gt; {
+            event.preventDefault();
+
+            const email = form.elements.email.value.trim();
+            const password = form.elements.password.value.trim();
+
+            if (email === "" || password === "") {
+              alert("All form fields must be filled in");
+              return;
+            }
+
+            const formData = {
+              email,
+              password,
+            };
+
+            console.log(formData);
+            form.reset();
+          });
+        &lt;/script&gt;</code></pre>
+          </section>
+
+          <section id="lab6task9" hidden>
+            <h3>Завдання №9</h3>
+            <p><strong>Умова:</strong> Змінювати колір фону body через інлайн-стиль по кліку на button.change-color і записувати значення кольору у span.color.</p>
+
+        <pre><code>&lt;div class="widget"&gt;
+          &lt;p&gt;Background color: &lt;span class="color"&gt;-&lt;/span&gt;&lt;/p&gt;
+          &lt;button type="button" class="change-color"&gt;Change color&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;script&gt;
+          function getRandomHexColor() {
+            return `#${Math.floor(Math.random() * 16777215)
+              .toString(16)
+              .padStart(6, 0)}`;
+          }
+
+          const changeColorButton = document.querySelector(".change-color");
+          const colorValue = document.querySelector(".color");
+
+          changeColorButton.addEventListener("click", () =&gt; {
+            const newColor = getRandomHexColor();
+
+            document.body.style.backgroundColor = newColor;
+            colorValue.textContent = newColor;
+          });
+        &lt;/script&gt;</code></pre>
+          </section>
+
+          <section id="lab6task10" hidden>
+            <h3>Завдання №10</h3>
+            <p><strong>Умова:</strong> Написати скрипт створення й очищення колекції елементів.</p>
+
+        <pre><code>&lt;div id="controls"&gt;
+          &lt;input type="number" min="1" max="100" step="1" /&gt;
+          &lt;button type="button" data-create&gt;Create&lt;/button&gt;
+          &lt;button type="button" data-destroy&gt;Destroy&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div id="boxes"&gt;&lt;/div&gt;
+
+        &lt;script&gt;
+          const controls = document.querySelector("#controls");
+          const input = controls.querySelector("input");
+          const createButton = controls.querySelector("[data-create]");
+          const destroyButton = controls.querySelector("[data-destroy]");
+          const boxes = document.querySelector("#boxes");
+
+          function getRandomHexColor() {
+            return `#${Math.floor(Math.random() * 16777215)
+              .toString(16)
+              .padStart(6, 0)}`;
+          }
+
+          function createBoxes(amount) {
+            const elements = [];
+            let size = 30;
+
+            for (let i = 0; i &lt; amount; i++) {
+              const box = document.createElement("div");
+
+              box.style.width = `${size}px`;
+              box.style.height = `${size}px`;
+              box.style.backgroundColor = getRandomHexColor();
+              box.style.margin = "5px";
+
+              elements.push(box);
+              size += 10;
+            }
+
+            boxes.append(...elements);
+          }
+
+          function destroyBoxes() {
+            boxes.innerHTML = "";
+          }
+
+          createButton.addEventListener("click", () =&gt; {
+            const amount = Number(input.value);
+
+          if (amount &gt;= 1 &amp;&amp; amount &lt;= 100) {
+            createBoxes(amount);
+            input.value = "";
+          }
+        });
+
+        destroyButton.addEventListener("click", destroyBoxes);
+      &lt;/script&gt;</code></pre>
+        </section>
+
+        <section id="lab6Conclusion" hidden>
+          <h3>Висновки до ЛР №6</h3>
+          <p>
+            У ході лабораторної роботи №6 було набуто практичних навичок роботи з DOM,
+            подіями, об'єктом події, формами, делегуванням подій, створенням HTML-елементів
+            через JavaScript та зміною стилів елементів за допомогою JS.
+          </p>
+        </section>
+
+      </div>
+          <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7</p></div>
+          <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8</p></div>
+          <div class="lab" data-lab="lab9" hidden><p>Лабораторна №9</p></div>
+
+        </main>
+      </div>
 
     <footer>
       © Звітний HTML-документ лабораторних робіт (FIOT-2025)
@@ -1594,7 +1910,8 @@ th, td{
     lab1: document.getElementById('leftMenuLab1'),
     lab2: document.getElementById('leftMenuLab2'),
     lab4: document.getElementById('leftMenuLab4'),
-    lab5: document.getElementById('leftMenuLab5')
+    lab5: document.getElementById('leftMenuLab5'),
+    lab6: document.getElementById('leftMenuLab6')
     
   };
 
@@ -1602,7 +1919,8 @@ th, td{
     lab1: 'meta',
     lab2: 'lab2meta',
     lab4: 'lab4meta',
-    lab5: 'lab5meta'
+    lab5: 'lab5meta',
+    lab6: 'lab6meta'
   };
 
   function showLab(labId) {
@@ -1657,6 +1975,7 @@ th, td{
       if (menu.id === 'leftMenuLab2') labId = 'lab2';
       if (menu.id === 'leftMenuLab4') labId = 'lab4';
       if (menu.id === 'leftMenuLab5') labId = 'lab5';
+      if (menu.id === 'leftMenuLab6') labId = 'lab6';
 
       showSection(labId, btn.dataset.section);
     });
