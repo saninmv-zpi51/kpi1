@@ -456,6 +456,17 @@
           <button class="wide" data-section="lab4task9">Завдання №9</button>
           <button class="wide" data-section="lab4Conclusion">Висновки ЛР4</button>
         </div>
+        <!-- LAB 5 MENU -->
+        <div class="menu" id="leftMenuLab5" hidden>
+          <button class="is-active wide" data-section="lab5meta">Тема, мета, посилання</button>
+          <button class="wide" data-section="lab5task1">Завдання №1</button>
+          <button class="wide" data-section="lab5task3">Завдання №3</button>
+          <button class="wide" data-section="lab5task5">Завдання №5</button>
+          <button class="wide" data-section="lab5task7">Завдання №7</button>
+          <button class="wide" data-section="lab5task9">Завдання №9</button>
+          <button class="wide" data-section="lab5task10">Завдання №10</button>
+          <button class="wide" data-section="lab5Conclusion">Висновки ЛР5</button>
+        </div>
       </aside>
 
       <main aria-label="Місце виведення інформації">
@@ -1353,7 +1364,204 @@ th, td{
         </p>
       </section>
         </div>
-        <div class="lab" data-lab="lab5" hidden><p>Лабораторна №5</p></div>
+        <div class="lab" data-lab="lab5" hidden>
+
+  <section id="lab5meta">
+    <h3>Лабораторна робота №5</h3>
+
+    <p><strong>Тема:</strong> Об'єкт. Методи об'єкта. Масив об'єктів. Деструктуризація об'єктів. Callback. Стрілочні функції. Перебираючі методи масиву.</p>
+
+    <p><strong>Мета:</strong> придбати практичні навички роботи з об'єктами, методами об'єкта, callback-функціями, стрілочними функціями та перебираючими методами масивів.</p>
+
+    <h3>Посилання</h3>
+    <ul>
+      <li>Репозиторій WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
+      <li>Жива сторінка WEB-застосунку: <a href="#" target="_blank">посилання</a></li>
+      <li>Репозиторій звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
+      <li>Жива сторінка звітного HTML-документу: <a href="#" target="_blank">посилання</a></li>
+    </ul>
+  </section>
+
+  <section id="lab5task1" hidden>
+    <h3>Завдання №1</h3>
+    <p><strong>Умова:</strong> Написати функцію createProduct(obj, callback), яка створює об'єкт товару з унікальним id та викликає callback.</p>
+
+    <pre><code>function createProduct(obj, callback) {
+      const product = {
+        id: Date.now(),
+        ...obj,
+      };
+
+      callback(product);
+    }
+
+    function logProduct(product) {
+      console.log("Продукт:", product);
+    }
+
+    function logTotalPrice(product) {
+      const totalPrice = product.price * product.quantity;
+      console.log(`Загальна вартість: ${totalPrice}`);
+    }
+
+    createProduct(
+      { name: "Apple", price: 200, quantity: 3 },
+      logProduct
+    );
+
+    createProduct(
+      { name: "Orange", price: 300, quantity: 2 },
+      logTotalPrice
+    );</code></pre>
+      </section>
+
+      <section id="lab5task3" hidden>
+        <h3>Завдання №3</h3>
+        <p><strong>Умова:</strong> З об'єкта medicines отримати масив назв препаратів, прибрати прострочені медикаменти та відсортувати їх у хронологічному порядку.</p>
+
+    <pre><code>const medicines = {
+      Агалгін: new Date("2022-05-01"),
+      Ношпа: new Date("2025-07-02"),
+      Альфахолін: new Date("2024-12-21"),
+      Аспірин: new Date("2022-08-15"),
+      Аспаркам: new Date("2024-04-18"),
+    };
+
+    const currentDate = new Date();
+
+    const validMedicines = Object.entries(medicines)
+      .filter(([name, date]) =&gt; date &gt; currentDate)
+      .sort((a, b) =&gt; a[1] - b[1])
+      .map(([name]) =&gt; name);
+
+    console.log(validMedicines);</code></pre>
+      </section>
+
+      <section id="lab5task5" hidden>
+        <h3>Завдання №5</h3>
+        <p><strong>Умова:</strong> Зробити знижку 20% на всі фрукти у масиві та надати id кожному продукту.</p>
+
+    <pre><code>const fruits = [
+      { name: "apple", price: 200 },
+      { name: "orange", price: 300 },
+      { name: "grapes", price: 750 },
+    ];
+
+    const discountedFruits = fruits.map((fruit, index) =&gt; ({
+      id: index + 1,
+      name: fruit.name,
+      price: fruit.price * 0.8,
+    }));
+
+    console.log(discountedFruits);</code></pre>
+      </section>
+
+      <section id="lab5task7" hidden>
+        <h3>Завдання №7</h3>
+        <p><strong>Умова:</strong> Написати клас Client з приватними властивостями #login та #email, доступ до яких здійснюється через getter та setter.</p>
+
+    <pre><code>class Client {
+      #login;
+      #email;
+
+      constructor(login, email) {
+        this.#login = login;
+        this.#email = email;
+      }
+
+      get login() {
+        return this.#login;
+      }
+
+      set login(newLogin) {
+        this.#login = newLogin;
+      }
+
+      get email() {
+        return this.#email;
+      }
+
+      set email(newEmail) {
+        this.#email = newEmail;
+      }
+    }
+
+    const client = new Client("mariia", "mariia@example.com");
+
+    console.log(client.login);
+    console.log(client.email);
+
+    client.login = "saninmariia";
+    client.email = "saninmariia@example.com";
+
+    console.log(client.login);
+    console.log(client.email);</code></pre>
+      </section>
+
+      <section id="lab5task9" hidden>
+        <h3>Завдання №9</h3>
+        <p><strong>Умова:</strong> Повернути об'єкт, у якому вказано кількість тегів.</p>
+
+    <pre><code>const tweets = [
+      { id: "000", likes: 5, tags: ["js", "nodejs"] },
+      { id: "001", likes: 2, tags: ["html", "css"] },
+      { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+      { id: "003", likes: 8, tags: ["css", "react"] },
+      { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+    ];
+
+    const tagCount = tweets
+      .flatMap(tweet =&gt; tweet.tags)
+      .reduce((acc, tag) =&gt; {
+        acc[tag] = (acc[tag] || 0) + 1;
+        return acc;
+      }, {});
+
+    console.log(tagCount);</code></pre>
+      </section>
+
+      <section id="lab5task10" hidden>
+        <h3>Завдання №10</h3>
+        <p><strong>Умова:</strong> Написати функцію checkBrackets(str), яка перевіряє правильність закриття дужок (), {}, [].</p>
+
+    <pre><code>function checkBrackets(str) {
+      const stack = [];
+      const brackets = {
+        ")": "(",
+        "}": "{",
+        "]": "[",
+      };
+
+      for (const char of str) {
+        if (char === "(" || char === "{" || char === "[") {
+          stack.push(char);
+        }
+
+        if (char === ")" || char === "}" || char === "]") {
+          if (stack.pop() !== brackets[char]) {
+            return false;
+          }
+        }
+      }
+
+      return stack.length === 0;
+    }
+
+    console.log(checkBrackets("function test() { return [1, 2, 3]; }"));
+    console.log(checkBrackets("function test( { return [1, 2, 3]; }"));</code></pre>
+      </section>
+
+      <section id="lab5Conclusion" hidden>
+        <h3>Висновки до ЛР №5</h3>
+        <p>
+          У ході лабораторної роботи №5 було набуто практичних навичок роботи з об'єктами,
+          масивами об'єктів, callback-функціями, стрілочними функціями, класами,
+          приватними властивостями, getter/setter та перебираючими методами масивів:
+          map(), filter(), sort(), reduce() і flatMap().
+        </p>
+      </section>
+
+    </div>
         <div class="lab" data-lab="lab6" hidden><p>Лабораторна №6</p></div>
         <div class="lab" data-lab="lab7" hidden><p>Лабораторна №7</p></div>
         <div class="lab" data-lab="lab8" hidden><p>Лабораторна №8</p></div>
@@ -1385,13 +1593,16 @@ th, td{
   const menus = {
     lab1: document.getElementById('leftMenuLab1'),
     lab2: document.getElementById('leftMenuLab2'),
-    lab4: document.getElementById('leftMenuLab4')
+    lab4: document.getElementById('leftMenuLab4'),
+    lab5: document.getElementById('leftMenuLab5')
+    
   };
 
   const firstSections = {
     lab1: 'meta',
     lab2: 'lab2meta',
-    lab4: 'lab4meta'
+    lab4: 'lab4meta',
+    lab5: 'lab5meta'
   };
 
   function showLab(labId) {
@@ -1445,6 +1656,7 @@ th, td{
       let labId = 'lab1';
       if (menu.id === 'leftMenuLab2') labId = 'lab2';
       if (menu.id === 'leftMenuLab4') labId = 'lab4';
+      if (menu.id === 'leftMenuLab5') labId = 'lab5';
 
       showSection(labId, btn.dataset.section);
     });
